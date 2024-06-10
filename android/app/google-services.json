@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "321174921144",
+    "project_id": "valux-afd00",
+    "storage_bucket": "valux-afd00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321174921144:android:829972274d211b44aa794d",
+        "android_client_info": {
+          "package_name": "com.example.valux"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3MSvWkBenabONGn3xJiEsYJtL6PIY-uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
