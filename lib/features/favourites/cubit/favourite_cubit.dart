@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:valux/features/favourites/data/models/FavModel.dart';
 import '../domain/usecases/get_fav_usecase.dart';
-
 part 'favourite_state.dart';
 
 class FavouriteCubit extends Cubit<FavouriteState> {

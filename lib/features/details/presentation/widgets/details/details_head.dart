@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import 'package:valux/features/details/cubit/details_cubit.dart';
 import '../../../../../config/colors/app_colors.dart';
 import '../../../../../core/utils/vContainer.dart';
@@ -22,7 +24,7 @@ class DetailsHead extends StatelessWidget {
               color: AppColors.vWhite,
               height: MediaQuery.of(context).size.height / 2.3,
               child: Center(
-                child: Image.network(height: 150, width: 150, img),
+                child: Image.network(height: 150.h, width: 150.w, img),
               ),
             ),
             if (discount != 0)
@@ -31,11 +33,10 @@ class DetailsHead extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 color: Colors.black,
-                child: Text('Discount',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Colors.white)),
+                child: Text(
+                  'Discount',
+                  style: AppFonts.lightBold.copyWith(fontSize: 11.sp),
+                ),
               ),
           ],
         );

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:valux/config/style/app_fonts.dart';
 
 class Titles extends StatelessWidget {
   const Titles({super.key, required this.text});
@@ -7,9 +8,6 @@ class Titles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-    );
+    return Text(text, style: AppFonts.headline2);
   }
 }

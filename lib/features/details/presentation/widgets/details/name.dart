@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valux/config/colors/app_colors.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import '../../../../../App/injuctoin_container.dart';
 import '../../../../layout/cubit/home/home_cubit.dart';
 
@@ -25,10 +26,7 @@ class ProductName extends StatelessWidget {
                 child: Text(name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleMedium),
+                    style: AppFonts.productName),
               ),
               Expanded(
                 flex: 1,

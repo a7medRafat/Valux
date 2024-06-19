@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valux/config/Strings/app_strings.dart';
 import '../../../../../config/style/icons_broken.dart';
 import '../../../../../core/utils/default_text_field.dart';
 
@@ -20,15 +21,15 @@ class RegisterInputFields extends StatelessWidget {
     return Column(
       children: [
         DefaultField(
-            prefixIcon: const Icon(IconBroken.User1),
+            prefixIcon: const Icon(IconBroken.Profile),
             controller: nameController,
-            hint: 'Name',
+            hint: AppStrings.name,
             borderRadius: BorderRadius.circular(15),
             isPassword: false,
             textInputType: TextInputType.name,
             validation: (value) {
               if (value.isEmpty) {
-                return 'name must not be empty';
+                return AppStrings.validateName;
               }
             }),
         const SizedBox(height: 15),
@@ -36,40 +37,41 @@ class RegisterInputFields extends StatelessWidget {
             prefixIcon: const Icon(IconBroken.Message),
             controller: emailController,
             borderRadius: BorderRadius.circular(15),
-            hint: 'E-mail',
+            hint: AppStrings.email,
             isPassword: false,
             textInputType: TextInputType.emailAddress,
             validation: (value) {
               if (value.isEmpty) {
-                return 'email must not be empty';
+                return AppStrings.validateEmail;
               }
             }),
         const SizedBox(height: 15),
         DefaultField(
             prefixIcon: const Icon(IconBroken.Call),
             controller: phoneController,
-            hint: 'Phone number',
+            hint: AppStrings.phone,
             borderRadius: BorderRadius.circular(15),
             isPassword: false,
             textInputType: TextInputType.phone,
             validation: (value) {
               if (value.isEmpty) {
-                return 'phone must not be empty';
+                return AppStrings.validatePhone;
               }
             }),
         const SizedBox(height: 15),
         DefaultField(
-            prefixIcon: const Icon(IconBroken.Lock),
-            controller: passwordController,
-            hint: 'password',
-            isPassword: false,
-            borderRadius: BorderRadius.circular(15),
-            textInputType: TextInputType.text,
-            validation: (value) {
-              if (value.isEmpty) {
-                return 'password must not be empty';
-              }
-            }),
+          prefixIcon: const Icon(IconBroken.Lock),
+          controller: passwordController,
+          hint: AppStrings.password,
+          isPassword: false,
+          borderRadius: BorderRadius.circular(15),
+          textInputType: TextInputType.text,
+          validation: (value) {
+            if (value.isEmpty) {
+              return AppStrings.validatePassword;
+            }
+          },
+        ),
       ],
     );
   }

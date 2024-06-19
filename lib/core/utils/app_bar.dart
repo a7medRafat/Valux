@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/config/colors/app_colors.dart';
-import 'package:valux/core/local_storage/hive_keys.dart';
-import 'package:valux/core/local_storage/user_storage.dart';
+import 'package:valux/features/layout/cubit/layout/layout_cubit.dart';
+
+import '../../App/injuctoin_container.dart';
+import '../local_storage/hive_keys.dart';
+import '../local_storage/user_storage.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar(
@@ -10,7 +13,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       required this.title,
       this.actions,
       this.leading,
-      this.backColor});
+      this.backColor,
+     });
 
   final Widget title;
   final List<Widget>? actions;
@@ -30,20 +34,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.all(10),
             child: GestureDetector(
-              onTap: () {
-                if (Scaffold.of(context).isDrawerOpen) {
-                  Scaffold.of(context).openEndDrawer();
-                } else {
-                  Scaffold.of(context).openDrawer();
-                }
-              },
+              onTap: ()=>sl<LayoutCubit>().scaffoldKey.currentState!.openDrawer(),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.network(
                   UserData().getData(id: Keys.user)!.image!,
                   fit: BoxFit.cover,
-                  width: 50.sp,
-                  height: 50.sp,
+                  width: 40.w,
+                  height: 40.h,
                   errorBuilder: (context, exception, stackTrace) {
                     return const Icon(Icons.error_outline);
                   },

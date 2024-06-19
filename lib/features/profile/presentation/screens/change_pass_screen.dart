@@ -26,7 +26,7 @@ class ChangePassScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, size: 18)),
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/Strings/app_strings.dart';
+import 'package:valux/config/style/app_fonts.dart';
 
 class LoginText extends StatelessWidget {
   const LoginText({super.key});
@@ -9,13 +12,10 @@ class LoginText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('LOGIN', style: Theme.of(context).textTheme.titleLarge!),
-        const SizedBox(height: 10),
-        Text('browse our hot offers',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Colors.grey)),
+        Text(AppStrings.login, style: AppFonts.headline1),
+        SizedBox(height: 10.h),
+        Text(AppStrings.loginPhrase,
+            style: AppFonts.headline3),
       ],
     );
   }

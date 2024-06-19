@@ -8,11 +8,9 @@ class CartImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(image,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width / 3,
+    return Image.network(
+      image,
+      width: MediaQuery.of(context).size.width / 3,
       height: 75.h,
       errorBuilder: (context, exception, stackTrace) {
         return const Icon(Icons.error_outline);

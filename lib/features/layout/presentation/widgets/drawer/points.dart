@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/style/app_fonts.dart';
 
 class PointsAndCredits extends StatelessWidget {
   const PointsAndCredits(
@@ -15,16 +17,16 @@ class PointsAndCredits extends StatelessWidget {
         Row(
           children: [
             text(context,'Credits'),
-            const SizedBox(width: 5),
+            SizedBox(width: 5.w),
             text(context,credit),
           ],
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: 10.w),
         Row(
           children: [
             text(context,'Points'),
-            const SizedBox(width: 5),
-            text(context,points),
+            SizedBox(width: 5.w),
+            text(context,points,),
           ],
         ),
       ],
@@ -32,5 +34,5 @@ class PointsAndCredits extends StatelessWidget {
   }
 
   Widget text(context , String text) =>
-      Text(text, style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 11));
+      Text(text, style: AppFonts.caption);
 }

@@ -40,54 +40,51 @@ class _DetailsScreenState extends State<DetailsScreen> {
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.vWhite,
       body: SingleChildScrollView(
-        child: Hero(
-          tag: 1,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BlocBuilder<DetailsCubit, DetailsState>(
-                builder: (context, state) {
-                  return DetailsHead(
-                    img: sl<DetailsCubit>().selectedImg == -1
-                        ? widget.product!.image!
-                        : widget.product!.images![sl<DetailsCubit>().selectedImg],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BlocBuilder<DetailsCubit, DetailsState>(
+              builder: (context, state) {
+                return DetailsHead(
+                  img: sl<DetailsCubit>().selectedImg == -1
+                      ? widget.product!.image!
+                      : widget
+                          .product!.images![sl<DetailsCubit>().selectedImg],
+                  discount: widget.product!.discount,
+                );
+              },
+            ),
+            Images(
+              images: widget.product!.images!,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ProductName(
+                    name: widget.product!.name!,
+                    id: widget.product!.id!,
+                  ),
+                  ProductPrice(
+                    price: widget.product!.price,
+                    oldPrice: widget.product!.oldPrice,
                     discount: widget.product!.discount,
-                  );
-                },
+                    discountValue: widget.product!.discount,
+                  ),
+                  const ProductTopic(),
+                  ProductDetails(description: widget.product!.description!),
+                ],
               ),
-              Images(
-                images: widget.product!.images!,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ProductName(
-                      name: widget.product!.name!,
-                      id: widget.product!.id!,
-                    ),
-                    ProductPrice(
-                      price: widget.product!.price,
-                      oldPrice: widget.product!.oldPrice,
-                      discount: widget.product!.discount,
-                      discountValue: widget.product!.discount,
-                    ),
-                    const ProductTopic(),
-                    ProductDetails(description: widget.product!.description!),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BlocBuilder<DetailsCubit, DetailsState>(
         builder: (context, state) {
           return AddToCart(
-            function: () =>
-                sl<DetailsCubit>().addDeleteToCart(
-                    productId: widget.product!.id),
+            function: () => sl<DetailsCubit>()
+                .addDeleteToCart(productId: widget.product!.id),
             inCart: sl<DetailsCubit>().inCart[widget.product!.id]!,
           );
         },

@@ -23,7 +23,7 @@ class _SearchInputState extends State<SearchInput> {
         },
         controller: widget.searchController,
         hint: 'search product',
-        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
         borderRadius: BorderRadius.circular(20),
         isPassword: false,
         textInputType: TextInputType.text,

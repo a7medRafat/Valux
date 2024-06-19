@@ -12,13 +12,15 @@ import 'package:valux/core/local_storage/hive_keys.dart';
 import 'package:valux/core/local_storage/user_storage.dart';
 import 'package:valux/features/address/data/models/AddressModel.dart';
 import 'package:valux/features/address/data/models/Address_body.dart';
-
 import '../data/models/GetAddresses.dart';
+import '../domain/usecases/get_addresses_usecase.dart';
 
 part 'address_state.dart';
 
 class AddressCubit extends Cubit<AddressState> {
-  AddressCubit() : super(AddressInitial());
+  final GetAddressesUseCase getAddressesUseCase;
+
+  AddressCubit({required this.getAddressesUseCase}) : super(AddressInitial());
 
   static LatLng? currentLocation;
   static MapController mapController = MapController();
@@ -66,7 +68,7 @@ class AddressCubit extends Cubit<AddressState> {
     });
   }
 
-
+  AddressModel? addAddressModel;
 
   void addAddress({required AddressBody body}) async {
     emit(AddAddressLoadingState());
@@ -75,8 +77,8 @@ class AddressCubit extends Cubit<AddressState> {
         url: EndPoints.ADDRESS,
         data: body.toJson());
     if (response.statusCode == 200) {
-      AddressModel model = AddressModel.fromJson(response.data);
-      emit(AddAddressSuccessState(model: model));
+      addAddressModel = AddressModel.fromJson(response.data);
+      emit(AddAddressSuccessState(model: addAddressModel!));
     } else {
       throw Exception();
     }
@@ -87,16 +89,13 @@ class AddressCubit extends Cubit<AddressState> {
 
   void getAddress() async {
     emit(GetAddressLoadingState());
-    final response = await DioHelper.getData(
-      url: EndPoints.ADDRESS,
-      token: UserData().getData(id: Keys.user)!.token,
-    );
-    if (response.statusCode == 200) {
-      addressModel = GetAddresses.fromJson(response.data);
-      emit(GetAddressSuccessState(model: addressModel!));
-    } else {
-      emit(GetAddressErrorState(error: 'a7aaaaaaa'));
-    }
+    final failureOrSuccess = await getAddressesUseCase.call();
+    failureOrSuccess.fold((failure) {
+      emit(GetAddressErrorState(error: failure.getMessage()));
+    }, (success) {
+      addressModel = success;
+      emit(GetAddressSuccessState(model: success));
+    });
   }
 
   void getSelectedAddress() {

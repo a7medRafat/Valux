@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valux/config/colors/app_colors.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import '../../../../../App/injuctoin_container.dart';
 import '../../../cubit/category/category_cubit.dart';
 import '../../../cubit/home/home_cubit.dart';
@@ -31,20 +32,20 @@ class CategoryItem extends StatelessWidget {
             color: sl<CategoryCubit>().selectedCategory == index
                 ? Colors.blue
                 : Colors.white,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(5),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
             child: Center(
-                child: Text(
-              name,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 12,
-                    color: sl<CategoryCubit>().selectedCategory == index
-                        ? Colors.white
-                        : AppColors.body,
-                  ),
-            )),
+              child: Text(
+                name,
+                style: AppFonts.regular2.copyWith(
+                  color: sl<CategoryCubit>().selectedCategory == index
+                      ? Colors.white
+                      : AppColors.body,
+                ),
+              ),
+            ),
           ),
         ),
       ),

@@ -33,78 +33,82 @@ class ProductItem extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
-              mainAxisSpacing: 15,
-              crossAxisSpacing: 15,
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
               childAspectRatio: 1 / 1.3,
               children: List.generate(
                 sl<CategoryCubit>().selectedCategory == -1
                     ? homeModel.data!.products!.length
                     : sl<HomeCubit>().productsModel!.data!.data!.length,
-                (index) => GestureDetector(
-                  onTap: () {
+                (index) => VContainer(
+                  function: () {
                     sl<CategoryCubit>().selectedCategory == -1
                         ? Go.goTo(
                             context,
                             DetailsScreen(
                                 id: homeModel.data!.products![index].id))
-                        : Go.goTo(context, CategoryDetailsScreen(index: index));
+                        : Go.goTo(
+                            context,
+                            CategoryDetailsScreen(
+                                id: sl<HomeCubit>()
+                                    .productsModel!
+                                    .data!
+                                    .data![index]
+                                    .id),
+                          );
                   },
-                  child: VContainer(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Stack(
-                            alignment: AlignmentDirectional.topCenter,
-                            children: [
-                              ProductImg(
-                                  img: sl<CategoryCubit>().selectedCategory ==
-                                          -1
-                                      ? homeModel.data!.products![index].image!
-                                      : sl<HomeCubit>()
-                                          .productsModel!
-                                          .data!
-                                          .data![index]
-                                          .image!),
-                              Like(
-                                  function: () {
-                                    sl<HomeCubit>().addDeleteFav(
-                                        productId: sl<CategoryCubit>()
-                                                    .selectedCategory ==
-                                                -1
-                                            ? homeModel
-                                                .data!.products![index].id!
-                                            : sl<HomeCubit>()
-                                                .productsModel!
-                                                .data!
-                                                .data![index]
-                                                .id);
-                                  },
-                                  icon: sl<HomeCubit>().like(index)),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            children: [
-                              ProductName(
-                                name: sl<CategoryCubit>().selectedCategory == -1
-                                    ? homeModel.data!.products![index].name!
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Stack(
+                          alignment: AlignmentDirectional.topCenter,
+                          children: [
+                            ProductImg(
+                                img: sl<CategoryCubit>().selectedCategory == -1
+                                    ? homeModel.data!.products![index].image!
                                     : sl<HomeCubit>()
                                         .productsModel!
                                         .data!
                                         .data![index]
-                                        .name!,
-                              ),
-                              const ShopNow(),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                                        .image!),
+                            Like(
+                                function: () {
+                                  sl<HomeCubit>().addDeleteFav(
+                                      productId: sl<CategoryCubit>()
+                                                  .selectedCategory ==
+                                              -1
+                                          ? homeModel.data!.products![index].id!
+                                          : sl<HomeCubit>()
+                                              .productsModel!
+                                              .data!
+                                              .data![index]
+                                              .id);
+                                },
+                                icon: sl<HomeCubit>().like(index)),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            ProductName(
+                              name: sl<CategoryCubit>().selectedCategory == -1
+                                  ? homeModel.data!.products![index].name!
+                                  : sl<HomeCubit>()
+                                      .productsModel!
+                                      .data!
+                                      .data![index]
+                                      .name!,
+                            ),
+                            const ShopNow(),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),

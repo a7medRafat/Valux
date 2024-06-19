@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import '../../../../config/colors/app_colors.dart';
 
 class FavPrice extends StatelessWidget {
@@ -22,22 +23,15 @@ class FavPrice extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '\$$price',
-            style: TextStyle(color: AppColors.vBlue, fontSize: 15.sp),
-          ),
+          Text('\$$price', style: AppFonts.productPrice),
           SizedBox(height: 6.h),
           Row(
             children: [
               if (discount != 0)
-                Text('$oldPrice\$',
-                    style: TextStyle(
-                        color: AppColors.bodySmall,
-                        decoration: TextDecoration.lineThrough)),
+                Text('\$$oldPrice', style: AppFonts.productOldPrice),
               SizedBox(width: 10.w),
               if (discount != 0)
-                Text('$discountValue% off',
-                    style: TextStyle(fontSize: 10.sp, color: AppColors.vGray)),
+                Text('$discountValue% off', style: AppFonts.regular3),
             ],
           ),
         ],

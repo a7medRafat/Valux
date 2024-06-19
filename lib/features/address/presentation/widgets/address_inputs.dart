@@ -15,6 +15,7 @@ class AddressInputs extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DefaultField(
+
               borderRadius: BorderRadius.zero,
               controller: AddressCubit.nameController,
               hint: 'name',

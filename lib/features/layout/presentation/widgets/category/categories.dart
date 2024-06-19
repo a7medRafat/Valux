@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valux/core/utils/loading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/Strings/app_strings.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import '../../../../../App/injuctoin_container.dart';
 import '../../../cubit/category/category_cubit.dart';
 import 'category_item.dart';
@@ -18,40 +20,33 @@ class Categories extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Categories', style: Theme.of(context).textTheme.bodyLarge),
-              const SizedBox(height: 10),
+              Text(AppStrings.categories, style:AppFonts.bodyText1),
+              SizedBox(height: 10.h),
               SizedBox(
-                height: 40,
-                child: BlocBuilder<CategoryCubit, CategoryState>(
-                  builder: (context, state) {
-                    if(state is GetCategoriesLoadingStates){
-                      return const Loading();
-                    }
-                    return ListView.separated(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => CategoryItem(
-                              name: sl<CategoryCubit>()
-                                  .categoriesModel!
-                                  .data!
-                                  .data![index]
-                                  .name!,
-                              index: index,
-                              id: sl<CategoryCubit>()
-                                  .categoriesModel!
-                                  .data!
-                                  .data![index]
-                                  .id!,
-                            ),
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(width: 10),
-                        itemCount: sl<CategoryCubit>()
-                            .categoriesModel!
-                            .data!
-                            .data!
-                            .length);
-                  },
-                ),
+                height: 40.h,
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => CategoryItem(
+                          name: sl<CategoryCubit>()
+                              .categoriesModel!
+                              .data!
+                              .data![index]
+                              .name!,
+                          index: index,
+                          id: sl<CategoryCubit>()
+                              .categoriesModel!
+                              .data!
+                              .data![index]
+                              .id!,
+                        ),
+                    separatorBuilder: (context, index) =>
+                        SizedBox(width: 10.w),
+                    itemCount: sl<CategoryCubit>()
+                        .categoriesModel!
+                        .data!
+                        .data!
+                        .length),
               )
             ],
           ),

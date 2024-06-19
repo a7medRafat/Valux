@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/Strings/app_strings.dart';
 import 'package:valux/core/go/go.dart';
 import 'package:valux/core/utils/loading.dart';
 import 'package:valux/core/utils/toast.dart';
@@ -13,13 +15,13 @@ import '../../cubit/auth_cubit.dart';
 import '../widget/register/register_text.dart';
 
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
-  final formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final nameController = TextEditingController();
-  final phoneController = TextEditingController();
+  static GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  static TextEditingController emailController = TextEditingController();
+  static TextEditingController passwordController = TextEditingController();
+  static TextEditingController nameController = TextEditingController();
+  static TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +51,13 @@ class RegisterScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const RegisterText(),
-                      const SizedBox(height: 30),
+                       SizedBox(height: 30.h),
                       RegisterInputFields(
                           emailController: emailController,
                           passwordController: passwordController,
                           nameController: nameController,
                           phoneController: phoneController),
-                      const SizedBox(height: 20),
+                       SizedBox(height: 20.h),
                       BlocBuilder<AuthCubit, AuthState>(
                         builder: (context, state) {
                           if (state is UserRegisterLoadingStates) {
@@ -74,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                                   sl<AuthCubit>().userRegister(body: model);
                                 }
                               },
-                              text: 'Sign Up');
+                              text: AppStrings.signUp);
                         },
                       ),
                     ],

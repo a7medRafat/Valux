@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valux/config/colors/app_colors.dart';
+import 'package:valux/core/utils/ani_loading.dart';
 import 'package:valux/core/utils/app_bar.dart';
-import 'package:valux/core/utils/app_button.dart';
-import 'package:valux/core/utils/loading.dart';
-import 'package:valux/core/utils/vContainer.dart';
 import 'package:valux/features/address/cubit/address_cubit.dart';
-import 'package:valux/features/order/cubit/order_cubit.dart';
 import 'package:valux/features/order/presentation/widgets/confirmation/confirm_head.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../cart/cubit/carts_cubit.dart';
 import '../widgets/confirmation/confirm_listview.dart';
+import '../widgets/confirmation/confirm_order_btn.dart';
 import '../widgets/confirmation/shopping_addresss.dart';
 import '../widgets/confirmation/summary.dart';
 
 class OrderScreen extends StatefulWidget {
-  const OrderScreen({super.key, required this.addressMap});
+  const OrderScreen(
+      {super.key, required this.addressMap, required this.selected});
+
   final bool addressMap;
+  final int selected;
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();
@@ -26,58 +26,46 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   @override
   void initState() {
+    sl<AddressCubit>().getAddress();
     sl<CartsCubit>().sum = 0;
     sl<CartsCubit>().getTotalPrice();
-    sl<AddressCubit>().getSelectedAddress();
+    if (sl<AddressCubit>().selected != -1) {
+      sl<AddressCubit>().getSelectedAddress();
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: MyAppBar(
-        backColor: Colors.transparent,
-          title: const Text(''),
-          leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.arrow_back))),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const ConfirmHead(),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ShoppingAddress(),
-                Summary(),
-              ],
-            ),
-            SizedBox(height: 20.h),
-            const ConfirmListView(),
-          ],
+        extendBodyBehindAppBar: true,
+        body: SingleChildScrollView(
+          child: BlocBuilder<AddressCubit, AddressState>(
+            builder: (context, state) {
+              if (state is GetAddressLoadingState) {
+                return Center(
+                  child: AnimationLoading(
+                    width: 40.w,
+                    height: 40.h,
+                  ),
+                );
+              }
+              return Column(
+                children: [
+                  const ConfirmHead(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ShoppingAddress(selected: widget.selected),
+                      const Summary(),
+                    ],
+                  ),
+                  const ConfirmListView(),
+                ],
+              );
+            },
+          ),
         ),
-      ),
-      bottomNavigationBar: VContainer(
-        color: AppColors.confirmation,
-        height: 70,
-        child: BlocBuilder<OrderCubit, OrderState>(
-          builder: (context, state) {
-            if (state is MakeOrderLoadingState) {
-              return const Loading();
-            }
-            return AppButton(
-              function: () {
-                sl<OrderCubit>().makeOrder(addressMap: widget.addressMap);
-              },
-              text: 'confirm',
-              radius: BorderRadius.zero,
-              btnColor: AppColors.confirmation,
-              txtColor: AppColors.vWhite,
-            );
-          },
-        ),
-      ),
-    );
+        bottomNavigationBar: ConfirmOrderBtn(addressMap: widget.addressMap));
   }
 }

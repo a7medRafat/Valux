@@ -79,6 +79,16 @@ class HomeCubit extends Cubit<HomeState> {
     return null;
   }
 
+  ProductsData? getOneProducts({required int id}) {
+    for (var e in productsModel!.data!.data!) {
+      if (e.id == id) {
+        ProductsData data = e;
+        return data;
+      }
+    }
+    return null;
+  }
+
   IconData like(int index) {
     if (sl<CategoryCubit>().selectedCategory == -1) {
       return favourites[homeModel!.data!.products![index].id]!

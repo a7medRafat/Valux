@@ -54,12 +54,13 @@ class ProfileImage extends StatelessWidget {
                   child: const Icon(IconBroken.Camera)),
               if (sl<ProfileCubit>().pickedImg != null)
                 Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: GestureDetector(
-                          onTap: function, child: const Update()),
-                    )),
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child:
+                        GestureDetector(onTap: function, child: const Update()),
+                  ),
+                ),
             ],
           ),
         );

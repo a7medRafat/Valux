@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import '../../../../config/colors/app_colors.dart';
 
 class SearchPrice extends StatelessWidget {
@@ -15,20 +16,18 @@ class SearchPrice extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('\$$price',
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
+            style: AppFonts.regular1
                 .copyWith(color: AppColors.vBlue)),
-        const SizedBox(width: 5),
+        SizedBox(width: 5.w),
         Row(
           children: [
             if(inFav)
               Text('in favourites',
-                style: TextStyle(fontSize: 11,color: AppColors.vGray)),
+                style: AppFonts.regular3),
             if(inFav)
               SizedBox(width: 10.w),
             if(inCart)
-              Text('in cart', style: TextStyle(fontSize: 11,color: AppColors.vGray)),
+              Text('in cart', style: AppFonts.regular3),
           ],
         )
       ],

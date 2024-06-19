@@ -12,16 +12,19 @@ class ConfirmListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartsCubit, CartsState>(
       builder: (context, state) {
-        return ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => ListViewItem(
-                  img: CartsCubit.cart!.data!.cartItems![index].product!.image!,
-                  quantity: sl<CartsCubit>().orders[CartsCubit.cart!.data!.cartItems![index].id].toString(),
-                  name: CartsCubit.cart!.data!.cartItems![index].product!.name!,
-                ),
-            separatorBuilder: (context, index) => SizedBox(height: 5.h),
-            itemCount: CartsCubit.cart!.data!.cartItems!.length);
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) => ListViewItem(
+                    img: CartsCubit.cart!.data!.cartItems![index].product!.image!,
+                    quantity: sl<CartsCubit>().orders[CartsCubit.cart!.data!.cartItems![index].id].toString(),
+                    name: CartsCubit.cart!.data!.cartItems![index].product!.name!,
+                  ),
+              separatorBuilder: (context, index) => SizedBox(height: 5.h),
+              itemCount: CartsCubit.cart!.data!.cartItems!.length),
+        );
       },
     );
   }

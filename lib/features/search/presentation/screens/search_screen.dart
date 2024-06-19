@@ -29,11 +29,7 @@ class _SearchScreenState extends State<SearchScreen> {
         buildWhen: (previous, current) => current is SearchSuccessState,
         builder: (context, state) {
           return Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              left: 10,
-              right: 10
-            ),
+            padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

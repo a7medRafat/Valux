@@ -11,13 +11,12 @@ class ProductImg extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
-      child:
-      Image.network(
+      child: Image.network(
         img,
         height: 100.sp,
         width: 100.sp,
         errorBuilder: (context, exception, stackTrace) {
-          return const Text('Error');
+          return const Icon(Icons.error_outline);
         },
       ),
     );

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/utils/my_Divider.dart';
 import 'package:valux/features/cart/cubit/carts_cubit.dart';
+import 'package:valux/features/cart/presentation/widgets/remove_cart.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../../core/utils/vContainer.dart';
+import '../../../details/cubit/details_cubit.dart';
 import '../../data/models/CartModel.dart';
 import 'quantity.dart';
 import 'image.dart';
@@ -68,6 +70,9 @@ class _CartItemState extends State<CartItem> {
               counter: widget.quantity,
             ),
           ),
+          RemoveCart(
+              function: () => sl<DetailsCubit>()
+                  .addDeleteToCart(productId: widget.product.id!)),
         ],
       ),
     );

@@ -12,11 +12,14 @@ import 'package:valux/features/layout/data/models/HomeModel.dart';
 import 'package:valux/features/layout/data/models/ProductsModel.dart';
 import 'package:valux/features/profile/data/models/UpdateProfileModel.dart';
 import '../../App/injuctoin_container.dart';
+import '../../features/address/data/models/GetAddresses.dart';
 import '../../features/auth/data/models/RegisterModel.dart';
 import '../../features/layout/cubit/home/home_cubit.dart';
 import '../../features/profile/data/models/ChangePasswordModel.dart';
 import '../../features/profile/data/models/GetProfileModel.dart';
 import '../../features/search/data/models/SearchModel.dart';
+import '../local_storage/hive_keys.dart';
+import '../local_storage/user_storage.dart';
 import '../shared_preferances/cache_helper.dart';
 
 abstract class ApiService {
@@ -45,8 +48,9 @@ abstract class ApiService {
 
   Future<GetProfileModel> getProfileData({required String token});
 
-
   Future<ChangePasswordModel> changePss({required Map<String, dynamic> map});
+
+  Future<GetAddresses> getAddresses();
 }
 
 class ApiServiceImpl implements ApiService {
@@ -209,7 +213,6 @@ class ApiServiceImpl implements ApiService {
     }
   }
 
-
   @override
   Future<ChangePasswordModel> changePss(
       {required Map<String, dynamic> map}) async {
@@ -233,12 +236,25 @@ class ApiServiceImpl implements ApiService {
       token: token,
     );
 
-
     if (response.statusCode == 200) {
       GetProfileModel profileModel = GetProfileModel.fromJson(response.data);
       return profileModel;
     } else {
       throw ServerException();
+    }
+  }
+
+  @override
+  Future<GetAddresses> getAddresses() async {
+    final response = await DioHelper.getData(
+      url: EndPoints.ADDRESS,
+      token: UserData().getData(id: Keys.user)!.token,
+    );
+    if (response.statusCode == 200) {
+      GetAddresses model = GetAddresses.fromJson(response.data);
+      return model;
+    } else {
+      throw Exception();
     }
   }
 }

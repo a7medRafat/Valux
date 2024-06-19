@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
 import 'package:valux/core/utils/vContainer.dart';
-
 import '../../../../../config/colors/app_colors.dart';
+import '../../../../../core/utils/arrow_back.dart';
 
 class ConfirmHead extends StatelessWidget {
   const ConfirmHead({super.key});
@@ -12,19 +12,18 @@ class ConfirmHead extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: VContainer(
-        color: AppColors.confirmation,
+        color: AppColors.vWhite,
         height: MediaQuery.of(context).size.height / 3,
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
               Image.asset(
-                'assets/images/purchase.png',
-                height: 80.h,
-                width: 80.w,
+                height: MediaQuery.of(context).size.height / 3,
+                'assets/images/confirm.jpg',
+                fit: BoxFit.fill,
               ),
-              const SizedBox(height: 10),
-              const Text('Good news! Your order is on the way!')
+              const ArrowBack()
             ],
           ),
         ),

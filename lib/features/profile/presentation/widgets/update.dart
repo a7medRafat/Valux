@@ -8,9 +8,9 @@ class Update extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: Colors.blue.withOpacity(0.3),
+      backgroundColor: Colors.blue.withOpacity(0.4),
       child: Icon(Icons.check_outlined,
-          color: AppColors.bodySmall),
+          color: AppColors.scaffoldColor),
     );
   }
 }

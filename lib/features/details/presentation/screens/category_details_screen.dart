@@ -13,10 +13,22 @@ import '../widgets/details/name.dart';
 import '../widgets/details/price.dart';
 import '../widgets/details/topic.dart';
 
-class CategoryDetailsScreen extends StatelessWidget {
-  const CategoryDetailsScreen({super.key, required this.index});
+class CategoryDetailsScreen extends StatefulWidget {
+  CategoryDetailsScreen({super.key, required this.id});
 
-  final int index;
+  final int id;
+  ProductsData? product;
+
+  @override
+  State<CategoryDetailsScreen> createState() => _CategoryDetailsScreenState();
+}
+
+class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
+  @override
+  void initState() {
+    widget.product = sl<HomeCubit>().getOneProducts(id: widget.id);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,24 +39,21 @@ class CategoryDetailsScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.vWhite,
       body: SingleChildScrollView(
-        child: BlocConsumer<DetailsCubit, DetailsState>(
-          listener: (context, state) {},
+        child: BlocBuilder<DetailsCubit, DetailsState>(
           builder: (context, state) {
-            ProductsData product =
-                sl<HomeCubit>().productsModel!.data!.data![index];
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DetailsHead(
                   img: sl<DetailsCubit>().selectedImg == -1
-                      ? product.image!
-                      : product.images![sl<DetailsCubit>().selectedImg],
-                  discount: product.discount,
+                      ? widget.product!.image!
+                      : widget.product!.images![sl<DetailsCubit>().selectedImg],
+                  discount: widget.product!.discount,
                 ),
                 BlocBuilder<HomeCubit, HomeState>(
                   builder: (context, state) {
                     return Images(
-                      images: product.images!,
+                      images: widget.product!.images!,
                     );
                   },
                 ),
@@ -56,19 +65,19 @@ class CategoryDetailsScreen extends StatelessWidget {
                       BlocBuilder<HomeCubit, HomeState>(
                         builder: (context, state) {
                           return ProductName(
-                            name: product.name!,
-                            id: product.id!,
+                            name: widget.product!.name!,
+                            id: widget.product!.id!,
                           );
                         },
                       ),
                       ProductPrice(
-                        price: product.price,
-                        oldPrice: product.oldPrice,
-                        discount: product.discount,
-                        discountValue: product.discount,
+                        price: widget.product!.price,
+                        oldPrice: widget.product!.oldPrice,
+                        discount: widget.product!.discount,
+                        discountValue: widget.product!.discount,
                       ),
                       const ProductTopic(),
-                      ProductDetails(description: product.description!),
+                      ProductDetails(description: widget.product!.description!),
                     ],
                   ),
                 ),
@@ -77,12 +86,15 @@ class CategoryDetailsScreen extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        child: AddToCart(
-          function: () {},
-          inCart: false,
-        ),
+      bottomNavigationBar: BlocBuilder<DetailsCubit, DetailsState>(
+        builder: (context, state) {
+          return AddToCart(
+            function: () =>
+                sl<DetailsCubit>().addDeleteToCart(
+                    productId: widget.product!.id),
+            inCart: sl<DetailsCubit>().inCart[widget.product!.id]!,
+          );
+        },
       ),
     );
   }

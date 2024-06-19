@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:valux/config/colors/app_colors.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import 'package:valux/core/utils/vContainer.dart';
+
 class MyDialog {
   static Future<dynamic> show(
           {required context,
@@ -10,6 +12,7 @@ class MyDialog {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
+          buttonPadding:EdgeInsets.zero,
           backgroundColor: AppColors.vWhite,
           surfaceTintColor: Colors.transparent,
           shape: const RoundedRectangleBorder(
@@ -22,26 +25,26 @@ class MyDialog {
               children: [
                 VContainer(
                   function: thisFun,
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(10),
                   color: AppColors.scaffoldColor,
                   borderRadius: BorderRadius.circular(3),
-                  child: const Text(
-                    "this address",
-                    style: TextStyle(color: Colors.black),
+                  child: Text(
+                    "This Address",
+                    style:  AppFonts.bodyText3,
                   ),
                 ),
                 // ignore: prefer_const_constructors
                 SizedBox(width: 10),
-                  VContainer(
-                    function: addFun,
-                    padding: const EdgeInsets.all(15),
-                    color: AppColors.scaffoldColor,
-                    borderRadius: BorderRadius.circular(3),
-                    child: const Text(
-                      "add new",
-                      style: TextStyle(color: Colors.blue),
-                    ),
+                VContainer(
+                  function: addFun,
+                  padding: const EdgeInsets.all(10),
+                  color: AppColors.primaryColor,
+                  borderRadius: BorderRadius.circular(3),
+                  child: Text(
+                    "New Address",
+                    style: AppFonts.bodyText3.copyWith(color: AppColors.vWhite),
                   ),
+                ),
               ],
             ),
           ],

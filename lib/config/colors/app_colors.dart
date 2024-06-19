@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class AppColors {
   // static Color scaffoldColor = const Color(0xffececec);
   static Color scaffoldColor = const Color(0xfff6f6f6);
-  static Color primaryColor =  Colors.black;
-  static Color vBlue =  Colors.blue;
+  static Color caption = const Color(0xff8f8e8e);
+  static Color valux = const Color(0xff000000);
+  static Color headLine1 = const Color(0xff000000);
+  static Color regular = const Color(0xff626161);
+  static Color bodyTxt = Colors.black;
+  static Color primaryColor = Colors.black;
+  static Color vBlue = Colors.blue;
   static Color iconColor = Colors.black;
   static Color titles = Colors.black;
   static Color body = Colors.black;
@@ -14,9 +19,6 @@ class AppColors {
   static Color vRed = Colors.redAccent;
   static Color bodySmall = const Color(0xff848484);
   static Color vBottomNavColor = Colors.white;
-  static Color confirmation = Colors.green.withOpacity(0.5);
+  static Color confirmation = const Color(0xff69D84F);
 
-  Shader instaGradient = const LinearGradient(
-          colors: [Color(0xffF9CE34), Color(0xffee2a7b), Color(0xff6228d7)])
-      .createShader(const Rect.fromLTWH(0.0, 0.0, 200, 70.0));
 }

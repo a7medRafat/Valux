@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/config/colors/app_colors.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import 'package:valux/core/utils/vContainer.dart';
-import 'package:valux/features/cart/presentation/widgets/quantity.dart';
 
 class ProductPrice extends StatelessWidget {
   const ProductPrice(
@@ -23,11 +23,10 @@ class ProductPrice extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          Text('\$$price',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .copyWith(color: AppColors.vBlue)),
+          Text(
+            '\$$price',
+            style: AppFonts.productPrice,
+          ),
           SizedBox(width: 10.w),
           if (discount != 0)
             Text('$oldPrice\$',
@@ -40,10 +39,10 @@ class ProductPrice extends StatelessWidget {
               color: AppColors.offColor,
               child: Text(
                 '$discountValue% off',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: AppColors.vWhite, fontSize: 10),
+                style: AppFonts.caption.copyWith(
+                  color: AppColors.vWhite,
+                  fontSize: 10.sp
+                ),
               ),
             ),
         ],

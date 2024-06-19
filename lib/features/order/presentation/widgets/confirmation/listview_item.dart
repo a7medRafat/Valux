@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/style/app_fonts.dart';
 
 import '../../../../../core/utils/vContainer.dart';
 import '../../../../layout/presentation/widgets/products/product_img.dart';
@@ -37,6 +38,7 @@ class ListViewItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     name,
+                    style: AppFonts.productName.copyWith(fontSize: 12.sp),
                   ),
                   SizedBox(height: 5.h),
                   Row(

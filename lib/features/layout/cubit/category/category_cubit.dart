@@ -13,18 +13,18 @@ class CategoryCubit extends Cubit<CategoryState> {
 
   CategoriesModel? categoriesModel;
 
-  void getCategories() async {
-      emit(GetCategoriesLoadingStates());
-      final failureOrSuccess = await getCategoriesUseCase.call();
-      failureOrSuccess.fold(
-          (failure) =>
-              emit(GetCategoriesErrorStates(error: failure.getMessage())),
-          (success) {
-        categoriesModel = success;
-        emit(GetCategoriesSuccessStates(categoriesModel: success));
-      });
-    }
 
+  void getCategories() async {
+    emit(GetCategoriesLoadingStates());
+    final failureOrSuccess = await getCategoriesUseCase.call();
+    failureOrSuccess.fold(
+        (failure) =>
+            emit(GetCategoriesErrorStates(error: failure.getMessage())),
+        (success) {
+      categoriesModel = success;
+      emit(GetCategoriesSuccessStates(categoriesModel: success));
+    });
+  }
 
   int selectedCategory = -1;
 

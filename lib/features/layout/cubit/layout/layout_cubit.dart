@@ -1,9 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:valux/core/dio_helper/dio_helper.dart';
 import 'package:valux/core/end_points/end_points.dart';
 import 'package:valux/core/local_storage/hive_keys.dart';
 import 'package:valux/core/local_storage/user_storage.dart';
+import 'package:valux/features/favourites/cubit/favourite_cubit.dart';
+import '../../../../App/injuctoin_container.dart';
 import '../../../../core/go/go.dart';
 import '../../../../core/shared_preferances/cache_helper.dart';
 import '../../../auth/presentation/screen/login_screen.dart';
@@ -33,6 +36,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   }
 
   int currentNavIndex = 0;
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   void changeNavButton(int index, BuildContext context) {
     currentNavIndex = index;
@@ -43,6 +47,6 @@ class LayoutCubit extends Cubit<LayoutState> {
     const HomeScreen(),
     const SearchScreen(),
     const FavScreen(),
-     CartScreen()
+    const CartScreen()
   ];
 }

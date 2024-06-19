@@ -45,7 +45,7 @@ class RegisterData {
   String? name;
   String? phone;
   String? email;
-  String? id;
+  int? id;
   String? image;
   String? token;
 

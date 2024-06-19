@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import 'package:valux/core/utils/vContainer.dart';
 import '../../../../config/colors/app_colors.dart';
 
@@ -21,12 +22,13 @@ class NameAndPrice extends StatelessWidget {
           children: [
             Text(
               maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                name, style: TextStyle(fontSize: 14.sp)),
-            Text(
-              '\$$price',
-              style: TextStyle(fontSize: 12.sp, color: AppColors.vGray),
+              overflow: TextOverflow.ellipsis,
+              name,
+              style: AppFonts.productName.copyWith(fontSize: 13.sp),
             ),
+            SizedBox(height: 5.h),
+            Text('\$$price',
+                style: AppFonts.bodyText3.copyWith(color: AppColors.caption)),
           ],
         ),
       ),

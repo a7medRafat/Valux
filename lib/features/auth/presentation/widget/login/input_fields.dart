@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valux/config/Strings/app_strings.dart';
 import 'package:valux/features/auth/cubit/auth_cubit.dart';
 import '../../../../../App/injuctoin_container.dart';
 import '../../../../../config/style/icons_broken.dart';
@@ -21,13 +22,13 @@ class LoginInputFields extends StatelessWidget {
         DefaultField(
             prefixIcon: const Icon(IconBroken.Message),
             controller: emailController,
-            hint: 'Email address',
+            hint: AppStrings.emailAddress,
             isPassword: false,
             borderRadius: BorderRadius.circular(15),
             textInputType: TextInputType.text,
             validation: (value) {
               if (value.isEmpty) {
-                return 'password must not be empty';
+                return AppStrings.validateEmail;
               }
             }),
         const SizedBox(height: 15),
@@ -35,21 +36,22 @@ class LoginInputFields extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return DefaultField(
-                prefixIcon: const Icon(IconBroken.Lock),
-                suffixPressed: () {
-                  sl<AuthCubit>().changeVisibility();
-                },
-                suffixIcon: sl<AuthCubit>().suffix,
-                controller: passwordController,
-                hint: 'Password',
-                borderRadius: BorderRadius.circular(15),
-                isPassword: sl<AuthCubit>().isVisible,
-                textInputType: TextInputType.visiblePassword,
-                validation: (value) {
-                  if (value.isEmpty) {
-                    return 'password must not be empty';
-                  }
-                });
+              prefixIcon: const Icon(IconBroken.Lock),
+              suffixPressed: () {
+                sl<AuthCubit>().changeVisibility();
+              },
+              suffixIcon: sl<AuthCubit>().suffix,
+              controller: passwordController,
+              hint: AppStrings.password,
+              borderRadius: BorderRadius.circular(15),
+              isPassword: sl<AuthCubit>().isVisible,
+              textInputType: TextInputType.visiblePassword,
+              validation: (value) {
+                if (value.isEmpty) {
+                  return AppStrings.validatePassword;
+                }
+              },
+            );
           },
         ),
       ],

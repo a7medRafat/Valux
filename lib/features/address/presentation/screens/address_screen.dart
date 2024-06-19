@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import 'package:valux/core/go/go.dart';
 import 'package:valux/core/utils/app_bar.dart';
 import 'package:valux/core/utils/loading.dart';
@@ -21,9 +22,9 @@ class AddressScreen extends StatelessWidget {
       appBar: MyAppBar(
           leading: TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Skip'),
+            child: const Icon(Icons.arrow_back, color: Colors.black),
           ),
-          title: const Text('Address', style: TextStyle(fontSize: 14))),
+          title: Text('Address', style: AppFonts.headline2)),
       body: SingleChildScrollView(
         child: Form(
           key: AddressCubit.formKey,
@@ -35,7 +36,8 @@ class AddressScreen extends StatelessWidget {
               }
               if (state is AddAddressSuccessState) {
                 MyToast.show(text: state.model.message!, context: context);
-                Go.goTo(context, const OrderScreen(addressMap: true));
+                Go.goTo(
+                    context, const OrderScreen(addressMap: true, selected: -1));
               }
             },
             builder: (context, state) {
@@ -56,11 +58,12 @@ class AddressScreen extends StatelessWidget {
                                 city: AddressCubit.cityController.text,
                                 region: AddressCubit.reginController.text,
                                 details: AddressCubit.detailsController.text,
-                                latitude: double.parse(AddressCubit.longitudeController.text),
-                                longitude: double.parse(AddressCubit.longitudeController.text),
+                                latitude: double.parse(
+                                    AddressCubit.longitudeController.text),
+                                longitude: double.parse(
+                                    AddressCubit.longitudeController.text),
                                 notes: AddressCubit.notesController.text);
-                            sl<AddressCubit>()
-                                .addAddress(body: body);
+                            sl<AddressCubit>().addAddress(body: body);
                           }
                         },
                       );

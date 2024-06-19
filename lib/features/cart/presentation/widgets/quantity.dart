@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/config/style/app_fonts.dart';
 import '../../../../config/colors/app_colors.dart';
 import '../../../../core/utils/my_Divider.dart';
 import '../../../../core/utils/vContainer.dart';
@@ -38,7 +39,7 @@ class Quantity extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(
                 counter.toString(),
-                style: TextStyle(fontSize: 16, color: AppColors.vBlue),
+                style: AppFonts.bodyText2.copyWith(color: AppColors.vBlue),
               ),
             ),
             const MyDivider(),

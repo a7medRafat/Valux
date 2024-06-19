@@ -7,13 +7,13 @@ import '../widgets/drawer/my_drawer.dart';
 
 class AppLayout extends StatelessWidget {
   const AppLayout({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LayoutCubit, LayoutState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          key: sl<LayoutCubit>().scaffoldKey,
           drawer: const MyDrawer(),
           body: sl<LayoutCubit>().screens[sl<LayoutCubit>().currentNavIndex],
           bottomNavigationBar: const SalomonBottomNav(),

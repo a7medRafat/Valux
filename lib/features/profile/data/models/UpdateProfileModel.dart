@@ -51,8 +51,8 @@ class UpdateData {
   String? email;
   String? phone;
   String? image;
-  int? points;
-  int? credit;
+  dynamic points;
+  dynamic credit;
   String? token;
 
   Map<String, dynamic> toJson() {

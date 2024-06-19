@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../config/colors/app_colors.dart';
+import 'package:valux/config/style/app_fonts.dart';
 
 class DefaultField extends StatelessWidget {
   final TextEditingController? controller;
@@ -12,10 +11,10 @@ class DefaultField extends StatelessWidget {
   final Widget? suffixTextBtn;
   final Color? suffixIconColor;
   final bool isPassword;
-  TextInputType textInputType;
-  final suffixPressed;
+  final TextInputType textInputType;
+  final Function()? suffixPressed;
   final validation;
-  final onChanged;
+  final Function(String)? onChanged;
   final BorderRadius? borderRadius;
   final EdgeInsetsGeometry? padding;
   bool? borderSide = true;
@@ -50,10 +49,10 @@ class DefaultField extends StatelessWidget {
       keyboardType: textInputType,
       validator: validation,
       obscureText: isPassword,
-      style: TextStyle(fontSize: 12, color: AppColors.body),
+      style: AppFonts.bodyText3,
       controller: controller,
       decoration: InputDecoration(
-        contentPadding: padding,
+        contentPadding: padding ?? const EdgeInsets.symmetric(vertical: 18,horizontal: 10),
         border: OutlineInputBorder(
             borderSide: BorderSide.none, borderRadius: borderRadius!),
         prefixIcon: prefixIcon,
@@ -62,10 +61,7 @@ class DefaultField extends StatelessWidget {
             icon: Icon(suffixIcon, color: suffixIconColor)),
         suffixText: suffixText,
         hintText: hint,
-        hintStyle: Theme.of(context)
-            .textTheme
-            .bodySmall!
-            .copyWith(color: AppColors.vGray),
+        hintStyle: AppFonts.regular1,
         filled: true,
         fillColor: Colors.white,
       ),

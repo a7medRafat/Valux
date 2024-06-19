@@ -45,7 +45,7 @@ class SearchItem extends StatelessWidget {
           child: Row(
             children: [
               SearchImg(img: img),
-              const SizedBox(width: 20),
+              SizedBox(width: 20.w),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

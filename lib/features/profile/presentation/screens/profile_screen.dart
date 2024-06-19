@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, size: 18)),
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
@@ -90,9 +90,7 @@ class ProfileScreen extends StatelessWidget {
                               'name': nameController.text,
                               'email': emailController.text,
                               'phone': phoneController.text,
-                              'image': await sl<ProfileCubit>()
-                                  .encodeImageToBase64(
-                                      sl<ProfileCubit>().pickedImg!),
+                              'image': UserData().getData(id: Keys.user)!.image!,
                             },
                           );
                         }

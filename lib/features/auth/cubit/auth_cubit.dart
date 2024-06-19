@@ -27,10 +27,10 @@ class AuthCubit extends Cubit<AuthState> {
         await userLoginUseCase.call(email: email, password: password);
     failureOrSuccess.fold(
         (failure) => emit(UserLoginErrorStates(error: failure.getMessage())),
-        (success) async{
-          if(success.status == true){
-            await sl<ProfileCubit>().getProfileData(token: success.data!.token!);
-          }
+        (success) async {
+      if (success.status == true) {
+        await sl<ProfileCubit>().getProfileData(token: success.data!.token!);
+      }
       emit(UserLoginSuccessStates(loginModel: success));
     });
   }

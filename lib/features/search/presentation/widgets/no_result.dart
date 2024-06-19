@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:valux/config/colors/app_colors.dart';
+import 'package:valux/config/style/app_fonts.dart';
 
 class NoResult extends StatelessWidget {
   const NoResult({super.key});
@@ -8,7 +9,6 @@ class NoResult extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'No Result',
-      style: TextStyle(fontSize: 12, color: AppColors.vGray),
-    );
+      style: AppFonts.regular2);
   }
 }

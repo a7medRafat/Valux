@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/go/go.dart';
 import 'package:valux/core/utils/app_button.dart';
 import 'package:valux/core/utils/loading.dart';
 import 'package:valux/core/utils/toast.dart';
 import 'package:valux/features/auth/presentation/widget/login/input_fields.dart';
+import 'package:valux/features/cart/cubit/carts_cubit.dart';
 import 'package:valux/features/layout/presentation/screens/app_layout.dart';
 import 'package:valux/features/profile/cubit/profile_cubit.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../../config/colors/app_colors.dart';
+import '../../../favourites/cubit/favourite_cubit.dart';
 import '../../../layout/cubit/home/home_cubit.dart';
 import '../../cubit/auth_cubit.dart';
 import '../widget/login/login_text.dart';
 import '../widget/login/register_now.dart';
 
 class LoginScreen extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  static GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  static TextEditingController emailController = TextEditingController();
+  static TextEditingController passwordController = TextEditingController();
 
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,10 @@ class LoginScreen extends StatelessWidget {
         if (state is UserLoginSuccessStates) {
           if (state.loginModel.status == true) {
             sl<ProfileCubit>().getProfileData(token: state.loginModel.data!.token!);
+            emailController.clear();
+            passwordController.clear();
+            sl<FavouriteCubit>().getFavourites();
+            sl<CartsCubit>().getCarts();
             sl<HomeCubit>().getHomeData();
             Go.goAndFinish(context, const AppLayout());
           } else {
@@ -47,11 +54,11 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const LoginText(),
-                      const SizedBox(height: 30),
+                      SizedBox(height: 30.h),
                       LoginInputFields(
                           emailController: emailController,
                           passwordController: passwordController),
-                      const SizedBox(height: 30),
+                      SizedBox(height: 30.h),
                       BlocBuilder<AuthCubit, AuthState>(
                         builder: (context, state) {
                           if (state is UserLoginLoadingStates) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/features/layout/cubit/home/home_cubit.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../../config/colors/app_colors.dart';
@@ -11,14 +12,15 @@ class RemoveFav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-        alignment: Alignment.topLeft,
-        child: GestureDetector(
-          onTap: () => sl<HomeCubit>().addDeleteFav(productId: productId),
-          child: Icon(
-            Icons.close,
-            color: AppColors.vGray,
-            size: 15,
-          ),
-        ));
+      alignment: Alignment.topLeft,
+      child: GestureDetector(
+        onTap: () => sl<HomeCubit>().addDeleteFav(productId: productId),
+        child: Icon(
+          Icons.close,
+          color: AppColors.vGray,
+          size: 15.sp,
+        ),
+      ),
+    );
   }
 }
