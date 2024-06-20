@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/utils/ani_loading.dart';
-import 'package:valux/core/utils/app_bar.dart';
 import 'package:valux/core/utils/loading.dart';
 import 'package:valux/features/order/cubit/order_cubit.dart';
 import '../../../../App/injuctoin_container.dart';
@@ -20,6 +19,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   @override
   void initState() {
     sl<OrderCubit>().getMyOrders();
+    // sl<OrderCubit>().getOrders();
     super.initState();
   }
 
@@ -39,13 +39,12 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
               child: Column(
                 children: [
                   const MyOrderHead(),
+                  if (state.orders.isEmpty) const Center(child: Text('No orders yet')),
                   ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (context, index) => MyOrderItem(
-                            model: state.orderModel,
-                          ),
+                      itemBuilder: (context, index) =>
+                          MyOrderItem(orders: state.orders, mainIndex: index),
                       separatorBuilder: (context, index) =>
                           SizedBox(height: 5.h),
                       itemCount: state.length),

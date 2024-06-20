@@ -24,10 +24,10 @@ class GetOrderDataErrorState extends OrderState {}
 class GetMyOrderDataLoadingState extends OrderState {}
 
 class GetMyOrderDataSuccessState extends OrderState {
-  final OrderModel orderModel;
+  final List<OrderModel> orders;
   final int length;
 
-  GetMyOrderDataSuccessState({required this.orderModel, required this.length});
+  GetMyOrderDataSuccessState({required this.orders, required this.length});
 }
 
 class GetMyOrderDataErrorState extends OrderState {

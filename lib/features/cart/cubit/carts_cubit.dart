@@ -15,7 +15,7 @@ class CartsCubit extends Cubit<CartsState> {
 
   static CartModel? cart;
   dynamic total = 0;
-  dynamic sum;
+  dynamic sum = 0;
 
   void getCarts() async {
     emit(GetCartsLoadingState());

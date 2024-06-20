@@ -27,11 +27,10 @@ class OrderBtn extends StatelessWidget {
                     thisFun: () {
                       if (sl<AddressCubit>().selected != -1) {
                         Go.goTo(
-                          context,
-                          OrderScreen(
-                              addressMap: false,
-                              selected: sl<AddressCubit>().selected),
-                        );
+                            context,
+                            OrderScreen(
+                                addressMap: false,
+                                selected: sl<AddressCubit>().selected));
                       }
                     },
                     addFun: () => Go.goTo(context, const AddressScreen()),

@@ -48,7 +48,10 @@ class AddressScreen extends StatelessWidget {
                   BlocBuilder<AddressCubit, AddressState>(
                     builder: (context, state) {
                       if (state is AddAddressLoadingState) {
-                        return const Loading();
+                        return const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Loading(),
+                        );
                       }
                       return AddressButton(
                         function: () {

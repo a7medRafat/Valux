@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:valux/core/error_handeller/failures.dart';
 import 'package:valux/features/order/data/datasources/order_remote_data_source.dart';
 import 'package:valux/features/order/domain/repositories/order_repository.dart';
-
 import '../../../../core/error_handeller/exceptions.dart';
 import '../../../../core/network/network_info.dart';
 import '../models/TestOrder.dart';
@@ -36,8 +35,8 @@ class OrderRepositoryImpl extends OrderRepository {
   Future<Either<Failure, QuerySnapshot<Map<String, dynamic>>>> getMyOrders()async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await remoteDataSource.getMyOrders();
-        return right(response);
+        final snapShot = await remoteDataSource.getMyOrders();
+        return right(snapShot);
       } on ServerException catch (e) {
         return left(ServerFailure(error: e));
       } on FirebaseException catch (e) {

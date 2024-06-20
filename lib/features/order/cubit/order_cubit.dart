@@ -68,10 +68,36 @@ class OrderCubit extends Cubit<OrderState> {
     });
   }
 
-  int? length;
+  void getOrders() async {
+    List<OrderModel> list = [];
+    emit(GetMyOrderDataLoadingState());
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc('60110')
+        .collection('orders')
+        .get()
+        .then((value) {
+      value.docs.forEach((e) {
+        list.add(OrderModel.fromJson(e.data()));
+      });
+      print(list.length);
+      print(list[2].product!.length);
+    });
+    // final failureOrSuccess = await getMyOrdersUseCase.call();
+    // failureOrSuccess.fold(
+    //     (failure) =>
+    //         emit(GetMyOrderDataErrorState(error: failure.getMessage())),
+    //     (success) {
+    //   print(success.product!.length);
+    //   emit(
+    //     GetMyOrderDataSuccessState(orderModel: success, length: 5),
+    //   );
+    // });
+  }
 
   void getMyOrders() async {
-    OrderModel? getMyOrders;
+    List<OrderModel> list = [];
     int? length;
     emit(GetMyOrderDataLoadingState());
     final failureOrSuccess = await getMyOrdersUseCase.call();
@@ -81,10 +107,9 @@ class OrderCubit extends Cubit<OrderState> {
         (success) {
       length = success.docs.length;
       for (var e in success.docs) {
-        getMyOrders = OrderModel.fromJson(e.data());
+        list.add(OrderModel.fromJson(e.data()));
       }
-      emit(GetMyOrderDataSuccessState(
-          orderModel: getMyOrders!, length: length!));
+      emit(GetMyOrderDataSuccessState(length: length!, orders: list));
     });
   }
 }

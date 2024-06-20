@@ -19,6 +19,6 @@ class AppColors {
   static Color vRed = Colors.redAccent;
   static Color bodySmall = const Color(0xff848484);
   static Color vBottomNavColor = Colors.white;
-  static Color confirmation = const Color(0xff69D84F);
+  static Color confirmation = const Color(0xff4fb737);
 
 }

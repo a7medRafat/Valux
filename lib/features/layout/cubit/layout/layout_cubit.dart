@@ -1,12 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:valux/core/dio_helper/dio_helper.dart';
 import 'package:valux/core/end_points/end_points.dart';
 import 'package:valux/core/local_storage/hive_keys.dart';
 import 'package:valux/core/local_storage/user_storage.dart';
-import 'package:valux/features/favourites/cubit/favourite_cubit.dart';
-import '../../../../App/injuctoin_container.dart';
 import '../../../../core/go/go.dart';
 import '../../../../core/shared_preferances/cache_helper.dart';
 import '../../../auth/presentation/screen/login_screen.dart';
@@ -22,11 +19,11 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   void logOut(context) async {
     emit(AppLogoutLoadingState());
-    Go.goAndFinish(context, LoginScreen());
+    Go.goAndFinish(context, const LoginScreen());
     final res = await DioHelper.postData(
         url: EndPoints.LOGOUT,
         data: {'fcm_token': 'SomeFcmToken'},
-        token: CacheHelper.getData(key: 'token'));
+        token: UserData().getData(id: Keys.user)!.token);
     if (res.statusCode == 200) {
       CacheHelper.removeData(key: 'token');
       CacheHelper.removeData(key: 'profile');

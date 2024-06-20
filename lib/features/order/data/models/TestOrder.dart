@@ -28,7 +28,7 @@ class OrderModel {
   String? name;
   String? date;
   int? id;
-  int? totalPrice;
+  dynamic totalPrice;
   String? payment;
   Address? address;
   List<ProductOrder>? product;

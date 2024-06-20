@@ -15,12 +15,17 @@ class ConfirmListView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: ListView.separated(
+              padding: const EdgeInsets.only(top: 15),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => ListViewItem(
-                    img: CartsCubit.cart!.data!.cartItems![index].product!.image!,
-                    quantity: sl<CartsCubit>().orders[CartsCubit.cart!.data!.cartItems![index].id].toString(),
-                    name: CartsCubit.cart!.data!.cartItems![index].product!.name!,
+                    img: CartsCubit
+                        .cart!.data!.cartItems![index].product!.image!,
+                    quantity: sl<CartsCubit>()
+                        .orders[CartsCubit.cart!.data!.cartItems![index].id]
+                        .toString(),
+                    name:
+                        CartsCubit.cart!.data!.cartItems![index].product!.name!,
                   ),
               separatorBuilder: (context, index) => SizedBox(height: 5.h),
               itemCount: CartsCubit.cart!.data!.cartItems!.length),

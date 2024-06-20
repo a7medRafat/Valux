@@ -65,7 +65,7 @@ class MyDrawer extends StatelessWidget {
             function: () => Go.goTo(context, const MyOrdersScreen()),
           ), //DrawerHeader
           TitleItem(
-            backColor: AppColors.vRed.withOpacity(0.5),
+            backColor: AppColors.vWhite,
             text: 'Logout',
             icon: IconBroken.Logout,
             function: () {
