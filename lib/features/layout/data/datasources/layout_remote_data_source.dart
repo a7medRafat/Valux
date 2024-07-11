@@ -12,9 +12,6 @@ abstract class LayoutRemoteDataSource {
   Future<ProductModel> getCategoryProduct({required int categoryId});
 
   Future<FavModel> addDeleteFav({required int productId});
-
-
-
 }
 
 class LayoutRemoteDataSourceImpl extends LayoutRemoteDataSource {
@@ -41,7 +38,4 @@ class LayoutRemoteDataSourceImpl extends LayoutRemoteDataSource {
   Future<ProductModel> getCategoryProduct({required int categoryId}) async {
     return await apiService.getCategoryProduct(categoryId: categoryId);
   }
-
-
-
 }

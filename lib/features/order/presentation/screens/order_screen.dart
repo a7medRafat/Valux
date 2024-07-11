@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valux/core/utils/ani_loading.dart';
+import 'package:valux/core/shared_widgets/ani_loading.dart';
 import 'package:valux/features/address/cubit/address_cubit.dart';
 import 'package:valux/features/order/presentation/widgets/confirmation/confirm_head.dart';
 import '../../../../App/injuctoin_container.dart';

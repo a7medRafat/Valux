@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valux/core/utils/app_bar.dart';
-import 'package:valux/core/utils/loading.dart';
-import 'package:valux/core/utils/toast.dart';
+import 'package:valux/core/shared_widgets/app_bar.dart';
+import 'package:valux/core/shared_widgets/toast.dart';
 import 'package:valux/features/favourites/cubit/favourite_cubit.dart';
-import '../../../../core/utils/ani_loading.dart';
+import '../../../../core/shared_widgets/ani_loading.dart';
+import '../../../../core/shared_widgets/no_item.dart';
 import '../../../../core/utils/titles.dart';
 import '../widgets/fav_grid.dart';
 
@@ -26,6 +26,9 @@ class FavScreen extends StatelessWidget {
             return MyToast.show(text: state.error, context: context);
           }
           if (state is GetFavouritesSuccessSate) {
+            if(state.favModel.data!.data!.isEmpty){
+              return const NoItem();
+            }
             return FavGrid(favModel: state.favModel);
           }
           return const Center(child: AnimationLoading());

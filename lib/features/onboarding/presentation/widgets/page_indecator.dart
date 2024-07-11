@@ -29,18 +29,17 @@ class PageIndicator extends StatelessWidget {
             spacing: 5,
             expansionFactor: 5,
             activeDotColor: AppColors.primaryColor,
-            dotColor: Colors.grey,
+            dotColor: Colors.grey.withOpacity(0.7),
           ),
         ),
         const Spacer(),
         BlocListener<OnboardingCubit, OnboardingState>(
-
             listener: (context, state) {},
             child: OnboardButton(
               widget: OnboardingCubit.get(context).isLast
                   ? TextButton(
                       onPressed: function,
-                      child: const Text('Get Started'),
+                      child: const Text('Get Started',style: TextStyle(color: Colors.black)),
                     )
                   : IconButton(
                       onPressed: function,

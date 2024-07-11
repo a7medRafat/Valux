@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valux/core/utils/ani_loading.dart';
-import 'package:valux/core/utils/loading.dart';
+import 'package:valux/core/shared_widgets/ani_loading.dart';
+import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/features/order/cubit/order_cubit.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../widgets/my_orders/my_order_head.dart';

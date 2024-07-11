@@ -7,9 +7,7 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   final SearchUseCase searchUseCase;
-
   SearchCubit({required this.searchUseCase}) : super(SearchInitial());
-
 
   SearchModel? searchModel;
   void search({required String text}) async {

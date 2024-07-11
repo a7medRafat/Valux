@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/go/go.dart';
-import 'package:valux/core/utils/app_button.dart';
-import 'package:valux/core/utils/loading.dart';
-import 'package:valux/core/utils/toast.dart';
+import 'package:valux/core/shared_widgets/app_button.dart';
+import 'package:valux/core/shared_widgets/loading.dart';
+import 'package:valux/core/shared_widgets/toast.dart';
+import 'package:valux/features/address/cubit/address_cubit.dart';
 import 'package:valux/features/auth/presentation/widget/login/input_fields.dart';
 import 'package:valux/features/cart/cubit/carts_cubit.dart';
 import 'package:valux/features/layout/presentation/screens/app_layout.dart';
@@ -30,12 +31,14 @@ class LoginScreen extends StatelessWidget {
       listener: (BuildContext context, state) async {
         if (state is UserLoginSuccessStates) {
           if (state.loginModel.status == true) {
-            sl<ProfileCubit>().getProfileData(token: state.loginModel.data!.token!);
+            sl<ProfileCubit>()
+                .getProfileData(token: state.loginModel.data!.token!);
+            sl<HomeCubit>().getHomeData();
+            sl<FavouriteCubit>().getFavourites();
+            sl<AddressCubit>().getAddress();
+            sl<CartsCubit>().getCarts();
             emailController.clear();
             passwordController.clear();
-            sl<FavouriteCubit>().getFavourites();
-            sl<CartsCubit>().getCarts();
-            sl<HomeCubit>().getHomeData();
             Go.goAndFinish(context, const AppLayout());
           } else {
             MyToast.show(text: state.loginModel.message!, context: context);

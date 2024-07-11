@@ -10,6 +10,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: BlocConsumer<OnboardingCubit, OnboardingState>(
         listener: (context, state) {},
         builder: (context, state) {

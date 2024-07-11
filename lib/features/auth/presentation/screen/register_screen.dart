@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/config/Strings/app_strings.dart';
 import 'package:valux/core/go/go.dart';
-import 'package:valux/core/utils/loading.dart';
-import 'package:valux/core/utils/toast.dart';
+import 'package:valux/core/shared_widgets/loading.dart';
+import 'package:valux/core/shared_widgets/toast.dart';
 import 'package:valux/features/auth/data/models/RegisterBody.dart';
 import 'package:valux/features/auth/presentation/screen/login_screen.dart';
 import 'package:valux/features/auth/presentation/widget/register/register_input_fields.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../../config/colors/app_colors.dart';
-import '../../../../core/utils/app_button.dart';
+import '../../../../core/shared_widgets/app_button.dart';
 import '../../cubit/auth_cubit.dart';
 import '../widget/register/register_text.dart';
 

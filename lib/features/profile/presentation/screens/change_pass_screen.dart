@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valux/config/colors/app_colors.dart';
-import 'package:valux/core/utils/app_button.dart';
-import 'package:valux/core/utils/loading.dart';
-import 'package:valux/core/utils/toast.dart';
+import 'package:valux/core/shared_widgets/app_button.dart';
+import 'package:valux/core/shared_widgets/loading.dart';
+import 'package:valux/core/shared_widgets/toast.dart';
 import 'package:valux/features/profile/cubit/profile_cubit.dart';
 import 'package:valux/features/profile/presentation/widgets/change_pass/change_pass_inputs.dart';
 import '../../../../App/injuctoin_container.dart';

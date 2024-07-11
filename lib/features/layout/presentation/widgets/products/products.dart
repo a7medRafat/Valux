@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valux/core/go/go.dart';
-import 'package:valux/core/utils/loading.dart';
+import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/core/utils/vContainer.dart';
 import 'package:valux/features/details/presentation/screens/details_screen.dart';
 import 'package:valux/features/details/presentation/screens/category_details_screen.dart';

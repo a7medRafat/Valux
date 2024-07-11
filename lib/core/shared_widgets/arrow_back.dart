@@ -10,8 +10,9 @@ class ArrowBack extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back)),
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
     );
   }

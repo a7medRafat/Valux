@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/local_storage/user_storage.dart';
 import 'package:valux/core/utils/linear_loading.dart';
-import 'package:valux/core/utils/toast.dart';
+import 'package:valux/core/shared_widgets/toast.dart';
 import 'package:valux/features/layout/cubit/layout/layout_cubit.dart';
 import 'package:valux/features/profile/cubit/profile_cubit.dart';
 import '../../../../App/injuctoin_container.dart';

@@ -24,6 +24,7 @@ import 'package:valux/features/favourites/data/datasources/favourites_remote_dat
 import 'package:valux/features/favourites/data/repositories/favourites_repository_impl.dart';
 import 'package:valux/features/favourites/domain/usecases/get_fav_usecase.dart';
 import 'package:valux/features/layout/cubit/layout/layout_cubit.dart';
+import 'package:valux/features/layout/data/datasources/layout_local_data_source.dart';
 import 'package:valux/features/layout/data/datasources/layout_remote_data_source.dart';
 import 'package:valux/features/layout/data/repositories/layout_repository_impl.dart';
 import 'package:valux/features/layout/domain/usecases/add_delete_fav_usecase.dart';
@@ -108,10 +109,14 @@ Future<void> init() async {
       () => AddDeleteFavUseCase(layoutRepository: sl()));
 
   sl.registerLazySingleton<LayoutRepository>(
-      () => LayoutRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()));
+      () => LayoutRepositoryImpl(remoteDataSource: sl(), networkInfo: sl(), localDataSource: sl()));
+
 
   sl.registerLazySingleton<LayoutRemoteDataSource>(
       () => LayoutRemoteDataSourceImpl(apiService: sl()));
+
+  sl.registerLazySingleton<LayoutLocalDataSource>(
+          () => LayoutLocalDataSourceImpl());
 
   // categories //
   sl.registerLazySingleton<CategoryCubit>(

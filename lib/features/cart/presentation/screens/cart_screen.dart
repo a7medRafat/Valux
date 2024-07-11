@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valux/core/utils/app_bar.dart';
-import 'package:valux/core/utils/loading.dart';
-import 'package:valux/core/utils/toast.dart';
+import 'package:valux/core/shared_widgets/app_bar.dart';
+import 'package:valux/core/shared_widgets/loading.dart';
+import 'package:valux/core/shared_widgets/toast.dart';
 import 'package:valux/features/cart/cubit/carts_cubit.dart';
 import 'package:valux/features/cart/presentation/widgets/cart_item.dart';
 import 'package:valux/features/cart/presentation/widgets/order_btn.dart';
-import '../../../../core/utils/ani_loading.dart';
+import '../../../../core/shared_widgets/ani_loading.dart';
+import '../../../../core/shared_widgets/no_item.dart';
 import '../../../../core/utils/titles.dart';
 
 class CartScreen extends StatelessWidget {
@@ -22,10 +23,14 @@ class CartScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is GetCartsLoadingState) {
             return const Center(child: AnimationLoading());
-          } else if (state is GetCartsErrorState) {
+          }
+          else if (state is GetCartsErrorState) {
             return MyToast.show(text: state.error, context: context);
           }
           if (state is GetCartsSuccessState) {
+            if(state.cartModel.data!.cartItems!.isEmpty){
+              return const NoItem();
+            }
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
@@ -49,13 +54,15 @@ class CartScreen extends StatelessWidget {
               ),
             );
           }
-          return const Loading();
+          return const Center(child: Loading());
         },
       ),
       floatingActionButton: BlocBuilder<CartsCubit, CartsState>(
         builder: (context, state) {
           if (state is GetCartsSuccessState) {
-            return const OrderBtn();
+            if(state.cartModel.data!.cartItems!.isNotEmpty) {
+              return const OrderBtn();
+            }
           }
           return const SizedBox();
         },

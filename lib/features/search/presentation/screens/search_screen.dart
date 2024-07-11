@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/go/go.dart';
-import 'package:valux/core/utils/app_bar.dart';
+import 'package:valux/core/shared_widgets/app_bar.dart';
 import 'package:valux/core/utils/linear_loading.dart';
 import 'package:valux/features/details/presentation/screens/details_screen.dart';
 import 'package:valux/features/search/cubit/search_cubit.dart';

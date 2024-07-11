@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:valux/core/utils/vContainer.dart';
 
 import '../../cubit/onboarding_cubit.dart';
 
@@ -10,14 +11,13 @@ class OnboardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: OnboardingCubit.get(context).isLast
-            ? const EdgeInsets.symmetric(horizontal: 15)
-            : EdgeInsets.zero,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: widget);
+    return VContainer(
+      color: Colors.grey.withOpacity(0.2),
+      padding: OnboardingCubit.get(context).isLast
+          ? const EdgeInsets.symmetric(horizontal: 15)
+          : EdgeInsets.zero,
+      borderRadius: BorderRadius.circular(10),
+      child: widget,
+    );
   }
 }

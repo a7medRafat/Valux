@@ -9,7 +9,11 @@ class Like extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-        alignment: AlignmentDirectional.topEnd,
-        child: IconButton(onPressed: function, icon: Icon(icon)));
+      alignment: AlignmentDirectional.topEnd,
+      child: IconButton(
+        onPressed: function,
+        icon: Icon(icon),
+      ),
+    );
   }
 }

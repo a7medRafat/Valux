@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:valux/config/colors/app_colors.dart';
 import 'package:valux/core/go/go.dart';
-import 'package:valux/core/utils/app_button.dart';
+import 'package:valux/core/shared_widgets/app_button.dart';
 import 'package:valux/features/profile/presentation/screens/change_pass_screen.dart';
 
 class ChangePassword extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:valux/core/utils/vContainer.dart';
 import '../../../../../config/colors/app_colors.dart';
-import '../../../../../core/utils/arrow_back.dart';
+import '../../../../../core/shared_widgets/arrow_back.dart';
 
 class ConfirmHead extends StatelessWidget {
   const ConfirmHead({super.key});

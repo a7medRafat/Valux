@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:valux/core/utils/toast.dart';
+import 'package:valux/core/shared_widgets/toast.dart';
 import '../../App/injuctoin_container.dart';
 import '../../features/auth/presentation/screen/login_screen.dart';
 import '../../features/layout/presentation/screens/app_layout.dart';

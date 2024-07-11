@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valux/core/utils/loading.dart';
+import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/features/address/cubit/address_cubit.dart';
 
 class ZoomInOut extends StatelessWidget {

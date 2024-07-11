@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:valux/config/colors/app_colors.dart';
-import 'package:valux/core/utils/app_button.dart';
+import 'package:valux/core/shared_widgets/app_button.dart';
 
 class UpdateButton extends StatelessWidget {
   const UpdateButton({super.key, required this.function});
