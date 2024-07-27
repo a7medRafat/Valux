@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:meta/meta.dart';
 import 'package:valux/core/dio_helper/dio_helper.dart';
-import 'package:valux/core/end_points/end_points.dart';
+import 'package:valux/core/API/end_points.dart';
 import 'package:valux/core/functions/app_functions.dart';
 import 'package:valux/core/local_storage/hive_keys.dart';
 import 'package:valux/core/local_storage/user_storage.dart';

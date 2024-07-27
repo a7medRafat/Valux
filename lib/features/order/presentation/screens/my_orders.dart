@@ -2,26 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/shared_widgets/ani_loading.dart';
-import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/features/order/cubit/order_cubit.dart';
-import '../../../../App/injuctoin_container.dart';
 import '../widgets/my_orders/my_order_head.dart';
 import '../widgets/my_orders/my_order_item.dart';
 
-class MyOrdersScreen extends StatefulWidget {
+class MyOrdersScreen extends StatelessWidget {
   const MyOrdersScreen({super.key});
-
-  @override
-  State<MyOrdersScreen> createState() => _MyOrdersScreenState();
-}
-
-class _MyOrdersScreenState extends State<MyOrdersScreen> {
-  @override
-  void initState() {
-    sl<OrderCubit>().getMyOrders();
-    // sl<OrderCubit>().getOrders();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +25,8 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
               child: Column(
                 children: [
                   const MyOrderHead(),
-                  if (state.orders.isEmpty) const Center(child: Text('No orders yet')),
+                  if (state.orders.isEmpty)
+                    const Center(child: Text('No orders yet')),
                   ListView.separated(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -52,7 +39,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
               ),
             );
           }
-          return const Loading();
+          return const Center(child: AnimationLoading());
         },
       ),
     );

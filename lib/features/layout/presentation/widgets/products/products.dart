@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valux/core/go/go.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/core/utils/vContainer.dart';
 import 'package:valux/features/details/presentation/screens/details_screen.dart';
@@ -43,13 +43,11 @@ class ProductItem extends StatelessWidget {
                 (index) => VContainer(
                   function: () {
                     sl<CategoryCubit>().selectedCategory == -1
-                        ? Go.goTo(
-                            context,
-                            DetailsScreen(
+                        ? context.go(
+                            page: DetailsScreen(
                                 id: homeModel.data!.products![index].id))
-                        : Go.goTo(
-                            context,
-                            CategoryDetailsScreen(
+                        : context.go(
+                            page: CategoryDetailsScreen(
                                 id: sl<HomeCubit>()
                                     .productsModel!
                                     .data!

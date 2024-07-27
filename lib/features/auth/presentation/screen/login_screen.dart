@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valux/core/go/go.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/shared_widgets/app_button.dart';
 import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/core/shared_widgets/toast.dart';
@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
             sl<CartsCubit>().getCarts();
             emailController.clear();
             passwordController.clear();
-            Go.goAndFinish(context, const AppLayout());
+            context.goAndFinish(page: const AppLayout());
           } else {
             MyToast.show(text: state.loginModel.message!, context: context);
           }

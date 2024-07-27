@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:valux/core/local_storage/hive_keys.dart';
@@ -28,13 +27,13 @@ class OrderCubit extends Cubit<OrderState> {
     products = [];
     Address address = Address(
       city: addressMap
-          ? sl<AddressCubit>().addressModel!.data!.data!.last.city!
+          ? sl<AddressCubit>().addressModel!.data!.data!.first.city!
           : sl<AddressCubit>().selectedAddress!.city,
       region: addressMap
-          ? sl<AddressCubit>().addressModel!.data!.data!.last.region!
+          ? sl<AddressCubit>().addressModel!.data!.data!.first.region!
           : sl<AddressCubit>().selectedAddress!.region,
       details: addressMap
-          ? sl<AddressCubit>().addressModel!.data!.data!.last.details!
+          ? sl<AddressCubit>().addressModel!.data!.data!.first.details!
           : sl<AddressCubit>().selectedAddress!.details,
     );
     for (var e in CartsCubit.cart!.data!.cartItems!) {
@@ -64,42 +63,15 @@ class OrderCubit extends Cubit<OrderState> {
     failureOrSuccess.fold(
         (failure) => emit(MakeOrderErrorState(error: failure.getMessage())),
         (success) {
+      getMyOrders();
       emit(MakeOrderSuccessState());
     });
   }
 
-  void getOrders() async {
-    List<OrderModel> list = [];
-    emit(GetMyOrderDataLoadingState());
-
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc('60110')
-        .collection('orders')
-        .get()
-        .then((value) {
-      value.docs.forEach((e) {
-        list.add(OrderModel.fromJson(e.data()));
-      });
-      print(list.length);
-      print(list[2].product!.length);
-    });
-    // final failureOrSuccess = await getMyOrdersUseCase.call();
-    // failureOrSuccess.fold(
-    //     (failure) =>
-    //         emit(GetMyOrderDataErrorState(error: failure.getMessage())),
-    //     (success) {
-    //   print(success.product!.length);
-    //   emit(
-    //     GetMyOrderDataSuccessState(orderModel: success, length: 5),
-    //   );
-    // });
-  }
-
   void getMyOrders() async {
+    emit(GetMyOrderDataLoadingState());
     List<OrderModel> list = [];
     int? length;
-    emit(GetMyOrderDataLoadingState());
     final failureOrSuccess = await getMyOrdersUseCase.call();
     failureOrSuccess.fold(
         (failure) =>

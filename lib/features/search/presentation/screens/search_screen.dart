@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valux/core/go/go.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/shared_widgets/app_bar.dart';
 import 'package:valux/core/utils/linear_loading.dart';
 import 'package:valux/features/details/presentation/screens/details_screen.dart';
@@ -11,14 +11,9 @@ import 'package:valux/features/search/presentation/widgets/search_item.dart';
 import '../widgets/no_result.dart';
 import '../widgets/search_input.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class SearchScreen extends StatelessWidget {
+  SearchScreen({super.key});
 
-  @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
 
   @override
@@ -52,11 +47,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                 productId: product.id!,
                                 inFav: product.inFavorites!,
                                 inCart: product.inCart!,
-                                function: () => Go.goTo(
-                                    context,
-                                    DetailsScreen(
-                                        id: state
-                                            .model.data!.data![index].id!)),
+                                function: () => context.go(
+                                  page: DetailsScreen(
+                                      id: state.model.data!.data![index].id!),
+                                ),
                               );
                             },
                             separatorBuilder: (context, index) =>

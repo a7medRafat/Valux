@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valux/config/style/app_fonts.dart';
-import 'package:valux/core/go/go.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/shared_widgets/app_bar.dart';
 import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/core/Map/map.dart';
@@ -30,14 +30,13 @@ class AddressScreen extends StatelessWidget {
           key: AddressCubit.formKey,
           child: BlocConsumer<AddressCubit, AddressState>(
             listener: (context, state) {
-              if (state is GetLocationSuccessState) {}
               if (state is AddAddressErrorState) {
                 MyToast.show(text: state.error, context: context);
               }
               if (state is AddAddressSuccessState) {
                 MyToast.show(text: state.model.message!, context: context);
-                Go.goTo(
-                    context, const OrderScreen(addressMap: true, selected: -1));
+                context.go(
+                    page: const OrderScreen(addressMap: true, selected: -1));
               }
             },
             builder: (context, state) {

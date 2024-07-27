@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import '../../../core/go/go.dart';
 import '../../../core/shared_preferances/cache_helper.dart';
 import '../../auth/presentation/screen/login_screen.dart';
 import '../data/models/onboarding_model.dart';
@@ -44,7 +43,6 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     } else {
       isLast = false;
     }
-    print(isLast);
     emit(ChangePageIndicatorState());
   }
 
@@ -61,7 +59,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   void skip({required context}) {
     CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
       if (value) {
-        Go.goTo(context, LoginScreen());
+        context.goAndFinish(page: const LoginScreen());
       }
     });
   }

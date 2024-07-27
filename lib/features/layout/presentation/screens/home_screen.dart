@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/config/Strings/app_strings.dart';
-import 'package:valux/core/go/go.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/shared_widgets/app_bar.dart';
-import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/core/shared_widgets/toast.dart';
 import 'package:valux/features/layout/cubit/category/category_cubit.dart';
 import 'package:valux/features/layout/presentation/widgets/products/products.dart';
@@ -26,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         title: Titles(text: AppStrings.appName),
         actions: [
           IconButton(
-              onPressed: () => Go.goTo(context, ProfileScreen()),
+              onPressed: () => context.go(page: ProfileScreen()),
               icon: const Icon(Icons.settings))
         ],
       ),

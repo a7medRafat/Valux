@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/config/Strings/app_strings.dart';
-import 'package:valux/core/go/go.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/core/shared_widgets/toast.dart';
 import 'package:valux/features/auth/data/models/RegisterBody.dart';
@@ -32,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
           if (state is UserRegisterSuccessStates) {
             if (state.model.status == true) {
               MyToast.show(text: state.model.message!, context: context);
-              Go.goAndFinish(context, LoginScreen());
+              context.goAndFinish(page: const LoginScreen());
             } else {
               MyToast.show(text: state.model.message!, context: context);
             }
@@ -51,13 +51,13 @@ class RegisterScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const RegisterText(),
-                       SizedBox(height: 30.h),
+                      SizedBox(height: 30.h),
                       RegisterInputFields(
                           emailController: emailController,
                           passwordController: passwordController,
                           nameController: nameController,
                           phoneController: phoneController),
-                       SizedBox(height: 20.h),
+                      SizedBox(height: 20.h),
                       BlocBuilder<AuthCubit, AuthState>(
                         builder: (context, state) {
                           if (state is UserRegisterLoadingStates) {

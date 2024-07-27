@@ -9,8 +9,6 @@ abstract class Failure extends Equatable {
   }
 }
 
-
-
 class OfflineFailure extends Failure {
   @override
   String getMessage() => "No internet connection";

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingItem extends StatelessWidget {
   const OnboardingItem(
@@ -14,17 +15,13 @@ class OnboardingItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image(image: AssetImage(img)),
-        const SizedBox(height: 20),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
+        Image(
+          image: AssetImage(img),
         ),
-        SizedBox(height: MediaQuery.of(context).size.width/12),
-        Text(
-          body,
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
+        SizedBox(height: 20.h),
+        Text(title, style: Theme.of(context).textTheme.titleLarge),
+        SizedBox(height: 10.h),
+        Text(body, style: Theme.of(context).textTheme.titleSmall),
       ],
     );
   }

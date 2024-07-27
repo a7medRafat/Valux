@@ -47,7 +47,7 @@ class ProfileImage extends StatelessWidget {
               ),
               VContainer(
                   function: pickImg,
-                  color: Colors.white,
+                  color: Colors.white70,
                   padding: const EdgeInsets.all(8),
                   margin: const EdgeInsets.all(5),
                   borderRadius: BorderRadius.circular(50),

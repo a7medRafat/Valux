@@ -26,10 +26,12 @@ class FavScreen extends StatelessWidget {
             return MyToast.show(text: state.error, context: context);
           }
           if (state is GetFavouritesSuccessSate) {
-            if(state.favModel.data!.data!.isEmpty){
+            if (state.favModel.data!.data!.isEmpty) {
               return const NoItem();
             }
-            return FavGrid(favModel: state.favModel);
+            return FavGrid(
+              favModel: state.favModel,
+            );
           }
           return const Center(child: AnimationLoading());
         },

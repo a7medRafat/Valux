@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/config/colors/app_colors.dart';
 import 'package:valux/config/style/app_fonts.dart';
 import '../../../../../App/injuctoin_container.dart';
@@ -31,7 +32,7 @@ class ProductName extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: CircleAvatar(
-                  radius: 25,
+                  radius: 25.sp,
                   backgroundColor: AppColors.scaffoldColor,
                   child: Center(
                     child: IconButton(
@@ -41,7 +42,8 @@ class ProductName extends StatelessWidget {
                             sl<HomeCubit>().favourites[id] == true
                                 ? Icons.favorite
                                 : CupertinoIcons.heart,
-                            size: 25)),
+                            size: 25.sp),
+                    ),
                   ),
                 ),
               )

@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import '../../../../../App/injuctoin_container.dart';
 import '../../../../../config/colors/app_colors.dart';
-import '../../../../../core/go/go.dart';
 import '../../../../../core/shared_widgets/ani_loading.dart';
 import '../../../../../core/shared_widgets/app_button.dart';
 import '../../../../../core/utils/quick_alert.dart';
@@ -27,7 +26,7 @@ class ConfirmOrderBtn extends StatelessWidget {
           if (state is MakeOrderSuccessState) {
             MyQuickAlert.show(context);
             await Future.delayed(const Duration(milliseconds: 3000));
-            Go.goAndFinish(context, const AppLayout());
+            context.goAndFinish(page: const AppLayout());
           }
         },
         builder: (context, state) {

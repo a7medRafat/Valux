@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/core/local_storage/user_storage.dart';
 import 'package:valux/core/utils/linear_loading.dart';
 import 'package:valux/core/shared_widgets/toast.dart';
-import 'package:valux/features/layout/cubit/layout/layout_cubit.dart';
 import 'package:valux/features/profile/cubit/profile_cubit.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../../core/local_storage/hive_keys.dart';
@@ -28,8 +27,9 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back)),
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
@@ -74,9 +74,7 @@ class ProfileScreen extends StatelessWidget {
                         state is UploadImgLoadingState)
                       const LinearLoading(),
                     SizedBox(height: 20.h),
-                    GestureDetector(
-                        onTap: () => sl<LayoutCubit>().logOut(context),
-                        child: const Info()),
+                    const Info(),
                     SettingsInputs(
                       nameController: nameController,
                       emailController: emailController,
@@ -90,7 +88,8 @@ class ProfileScreen extends StatelessWidget {
                               'name': nameController.text,
                               'email': emailController.text,
                               'phone': phoneController.text,
-                              'image': UserData().getData(id: Keys.user)!.image!,
+                              'image':
+                                  UserData().getData(id: Keys.user)!.image!,
                             },
                           );
                         }

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../../core/utils/default_text_field.dart';
 import '../../cubit/search_cubit.dart';
@@ -15,11 +16,13 @@ class SearchInput extends StatefulWidget {
 class _SearchInputState extends State<SearchInput> {
   @override
   Widget build(BuildContext context) {
-    return DefaultField(
+    return Padding(
+      padding: EdgeInsets.only(top: 3.h),
+      child: DefaultField(
         onChanged: (String value) {
-          setState(() {
-            sl<SearchCubit>().search(text: widget.searchController.text);
-          });
+          setState(
+            () => sl<SearchCubit>().search(text: widget.searchController.text),
+          );
         },
         controller: widget.searchController,
         hint: 'search product',
@@ -31,6 +34,8 @@ class _SearchInputState extends State<SearchInput> {
           if (value.isEmpty) {
             return 'search required';
           }
-        });
+        },
+      ),
+    );
   }
 }

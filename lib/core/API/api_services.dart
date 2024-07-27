@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:valux/core/dio_helper/dio_helper.dart';
-import 'package:valux/core/end_points/end_points.dart';
+import 'package:valux/core/API/end_points.dart';
 import 'package:valux/core/error_handeller/exceptions.dart';
+import 'package:valux/core/utils/debouncing.dart';
 import 'package:valux/features/auth/data/models/LoginModel.dart';
 import 'package:valux/features/auth/data/models/RegisterBody.dart';
 import 'package:valux/features/cart/data/models/AddToCartModel.dart';
@@ -159,16 +162,23 @@ class ApiServiceImpl implements ApiService {
 
   @override
   Future<SearchModel> search({required String text}) async {
-    final response = await DioHelper.postData(
-        url: EndPoints.SEARCH,
-        token: CacheHelper.getData(key: 'token'),
-        data: {'text': text});
-    if (response.statusCode == 200) {
-      SearchModel model = SearchModel.fromJson(response.data);
-      return model;
-    } else {
-      throw ServerException();
-    }
+    final debouncer = Debouncer(milliseconds: 200);
+
+    final Completer<SearchModel> completer = Completer();
+
+    debouncer.run(() async {
+      final response = await DioHelper.postData(
+          url: EndPoints.SEARCH,
+          token: CacheHelper.getData(key: 'token'),
+          data: {'text': text});
+      if (response.statusCode == 200) {
+        SearchModel model = SearchModel.fromJson(response.data);
+        completer.complete(model);
+      } else {
+        completer.completeError(ServerException());
+      }
+    });
+    return completer.future;
   }
 
   @override

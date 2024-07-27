@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context)=>sl<CartsCubit>()..getCarts()),
         BlocProvider(create: (BuildContext context)=>sl<ProfileCubit>()),
         BlocProvider(create: (BuildContext context)=>sl<AddressCubit>()..getAddress()),
-        BlocProvider(create: (BuildContext context)=>sl<OrderCubit>()),
+        BlocProvider(create: (BuildContext context)=>sl<OrderCubit>()..getMyOrders()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),

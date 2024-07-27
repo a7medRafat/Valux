@@ -32,7 +32,8 @@ class OrderRepositoryImpl extends OrderRepository {
   }
 
   @override
-  Future<Either<Failure, QuerySnapshot<Map<String, dynamic>>>> getMyOrders()async {
+  Future<Either<Failure, QuerySnapshot<Map<String, dynamic>>>>
+      getMyOrders() async {
     if (await networkInfo.isConnected) {
       try {
         final snapShot = await remoteDataSource.getMyOrders();

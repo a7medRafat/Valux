@@ -41,7 +41,7 @@ class AppFunctions {
       return false;
     }
     if (!serviceEnabled) {
-      print('not enabled');
+      debugPrint('not enabled');
     }
     return true;
   }
@@ -91,7 +91,7 @@ class AppFunctions {
         },
       );
     } catch (e) {
-      print('Error loading image: $e');
+      debugPrint('Error loading image: $e');
       return const ImgPlaceHolder(); // Display a placeholder image or error message
     }
   }
@@ -99,13 +99,15 @@ class AppFunctions {
   static Widget startWidget() {
     final Widget widget;
     final String? token = CacheHelper.getData(key: 'token');
+    //CacheHelper.getData(key: 'token');
     final bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+    //CacheHelper.getData(key: 'onBoarding');
 
     if (onBoarding == true) {
       if (token != null) {
         widget = const AppLayout();
       } else {
-        widget = LoginScreen();
+        widget = const LoginScreen();
       }
     } else {
       widget = const OnboardingScreen();
@@ -113,8 +115,8 @@ class AppFunctions {
     return widget;
   }
 
-  static void mapFailureOrStates<B, T>(
-      Either<Failure, B> either, GenericState<T> loaded, GenericState<T> error) {
+  static void mapFailureOrStates<B, T>(Either<Failure, B> either,
+      GenericState<T> loaded, GenericState<T> error) {
     return either.fold((failure) => sl<GenericCubit>().customEmit(loaded),
         (success) => sl<GenericCubit>().customEmit(error));
   }

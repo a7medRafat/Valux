@@ -3,6 +3,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:valux/core/API/api_services.dart';
 import 'package:valux/core/firebase/firestore.dart';
 import 'package:valux/core/network/network_info.dart';
+import 'package:valux/core/shared_preferances/cache_helper.dart';
 import 'package:valux/features/address/cubit/address_cubit.dart';
 import 'package:valux/features/address/data/repositories/address_repository_impl.dart';
 import 'package:valux/features/address/domain/usecases/get_addresses_usecase.dart';
@@ -108,15 +109,14 @@ Future<void> init() async {
   sl.registerLazySingleton<AddDeleteFavUseCase>(
       () => AddDeleteFavUseCase(layoutRepository: sl()));
 
-  sl.registerLazySingleton<LayoutRepository>(
-      () => LayoutRepositoryImpl(remoteDataSource: sl(), networkInfo: sl(), localDataSource: sl()));
-
+  sl.registerLazySingleton<LayoutRepository>(() => LayoutRepositoryImpl(
+      remoteDataSource: sl(), networkInfo: sl(), localDataSource: sl()));
 
   sl.registerLazySingleton<LayoutRemoteDataSource>(
       () => LayoutRemoteDataSourceImpl(apiService: sl()));
 
   sl.registerLazySingleton<LayoutLocalDataSource>(
-          () => LayoutLocalDataSourceImpl());
+      () => LayoutLocalDataSourceImpl());
 
   // categories //
   sl.registerLazySingleton<CategoryCubit>(
@@ -219,7 +219,8 @@ Future<void> init() async {
 
   sl.registerLazySingleton<MyFirebase>(() => MyFirebaseImpl());
 
-  sl.registerLazySingleton<GetMyOrdersUseCase>(() => GetMyOrdersUseCase(orderRepository: sl()));
+  sl.registerLazySingleton<GetMyOrdersUseCase>(
+      () => GetMyOrdersUseCase(orderRepository: sl()));
 
 
 }

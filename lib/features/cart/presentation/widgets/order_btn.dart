@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/features/order/presentation/screens/order_screen.dart';
 import '../../../../App/injuctoin_container.dart';
 import '../../../../config/colors/app_colors.dart';
-import '../../../../core/go/go.dart';
 import '../../../../core/shared_widgets/app_button.dart';
 import '../../../../core/utils/dialog.dart';
 import '../../../address/cubit/address_cubit.dart';
@@ -26,17 +26,16 @@ class OrderBtn extends StatelessWidget {
                     context: context,
                     thisFun: () {
                       if (sl<AddressCubit>().selected != -1) {
-                        Go.goTo(
-                          context,
-                          OrderScreen(
+                        context.go(
+                          page: OrderScreen(
                               addressMap: false,
                               selected: sl<AddressCubit>().selected),
                         );
                       }
                     },
-                    addFun: () => Go.goTo(context, const AddressScreen()),
+                    addFun: () => context.go(page: const AddressScreen()),
                     content: const Addresses())
-                : Go.goTo(context, const AddressScreen());
+                : context.go(page: const AddressScreen());
           },
           text: 'order',
           txtColor: AppColors.vWhite,

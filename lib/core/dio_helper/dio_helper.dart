@@ -4,10 +4,12 @@ class DioHelper {
   static Dio? dio;
 
   static void init() {
-    dio = Dio(BaseOptions(
-        baseUrl: 'https://student.valuxapps.com/api/',
-        receiveDataWhenStatusError: true,
-        headers: {'Content-Type': 'application/json'}));
+    dio = Dio(
+      BaseOptions(
+          baseUrl: 'https://student.valuxapps.com/api/',
+          receiveDataWhenStatusError: true,
+          headers: {'Content-Type': 'application/json'}),
+    );
   }
 
   static Future<Response> getData({

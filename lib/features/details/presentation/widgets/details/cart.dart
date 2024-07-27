@@ -1,14 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:valux/core/go/go.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/shared_widgets/app_button.dart';
 import 'package:valux/core/utils/vContainer.dart';
-import 'package:valux/features/address/cubit/address_cubit.dart';
-import 'package:valux/features/address/presentation/screens/address_screen.dart';
 import 'package:valux/features/cart/presentation/screens/cart_screen.dart';
-import '../../../../../App/injuctoin_container.dart';
 import '../../../../../config/colors/app_colors.dart';
-import '../../../../../core/utils/dialog.dart';
-import '../../../../address/presentation/widgets/addresses.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({
@@ -40,7 +35,7 @@ class AddToCart extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           VContainer(
-            function: () =>Go.goTo(context , const CartScreen()),
+            function: () => context.go(page: const CartScreen()),
             borderRadius: BorderRadius.circular(50),
             padding: const EdgeInsets.all(18),
             color: inCart == true

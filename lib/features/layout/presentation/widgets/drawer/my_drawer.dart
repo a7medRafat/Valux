@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valux/config/style/icons_broken.dart';
+import 'package:valux/core/extensions/navigation.dart';
 import 'package:valux/core/local_storage/hive_keys.dart';
 import 'package:valux/core/local_storage/user_storage.dart';
 import 'package:valux/features/layout/cubit/layout/layout_cubit.dart';
@@ -10,7 +11,7 @@ import 'package:valux/features/layout/presentation/widgets/drawer/title_Item.dar
 import 'package:valux/features/order/presentation/screens/my_orders.dart';
 import '../../../../../App/injuctoin_container.dart';
 import '../../../../../config/colors/app_colors.dart';
-import '../../../../../core/go/go.dart';
+import '../../../../auth/presentation/screen/login_screen.dart';
 import 'name.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -62,14 +63,15 @@ class MyDrawer extends StatelessWidget {
             backColor: AppColors.vWhite,
             text: 'My Orders',
             icon: IconBroken.Buy,
-            function: () => Go.goTo(context, const MyOrdersScreen()),
+            function: () => context.go(page: const MyOrdersScreen()),
           ), //DrawerHeader
           TitleItem(
             backColor: AppColors.vWhite,
             text: 'Logout',
             icon: IconBroken.Logout,
             function: () {
-              sl<LayoutCubit>().logOut(context);
+              context.goAndFinish(page: const LoginScreen());
+              sl<LayoutCubit>().logOut();
             },
           ), //DrawerHeader
         ],
