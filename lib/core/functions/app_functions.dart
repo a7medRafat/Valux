@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:valux/config/Strings/app_strings.dart';
 import 'package:valux/core/shared_widgets/toast.dart';
 import '../../App/injuctoin_container.dart';
 import '../../features/auth/presentation/screen/login_screen.dart';
@@ -19,24 +20,21 @@ class AppFunctions {
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      MyToast.show(
-          text: 'Location services are disabled. Please enable the services',
-          context: context);
+      MyToast.show(text: AppStrings.locationDisabled, context: context);
+
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        MyToast.show(text: 'Location permissions are denied', context: context);
+        MyToast.show(text: AppStrings.locationDenied, context: context);
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
       MyToast.show(
-          text:
-              'Location permissions are permanently denied, we cannot request permissions.',
-          context: context);
+          text: AppStrings.locationPermanentlyDenied, context: context);
 
       return false;
     }

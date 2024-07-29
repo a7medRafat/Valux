@@ -9,7 +9,6 @@ import '../../../cart/presentation/screens/cart_screen.dart';
 import '../../../favourites/presentation/screens/fav_screen.dart';
 import '../../../search/presentation/screens/search_screen.dart';
 import '../../presentation/screens/home_screen.dart';
-
 part 'layout_state.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {

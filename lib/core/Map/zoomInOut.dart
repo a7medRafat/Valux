@@ -4,10 +4,11 @@ import 'package:valux/core/shared_widgets/loading.dart';
 import 'package:valux/features/address/cubit/address_cubit.dart';
 
 class ZoomInOut extends StatelessWidget {
-  const ZoomInOut({super.key,
-    required this.getLocation,
-    required this.zoomIn,
-    required this.zoomOut});
+  const ZoomInOut(
+      {super.key,
+      required this.getLocation,
+      required this.zoomIn,
+      required this.zoomOut});
 
   final Function() getLocation;
   final Function() zoomIn;
@@ -24,12 +25,13 @@ class ZoomInOut extends StatelessWidget {
           children: [
             BlocBuilder<AddressCubit, AddressState>(
               builder: (context, state) {
-                if(state is GetLocationLoadingState){
+                if (state is GetLocationLoadingState) {
                   return const SizedBox(
-                      child: Loading());
+                    child: Loading(),
+                  );
                 }
                 return FloatingActionButton(
-                  heroTag:"btn1",
+                  heroTag: "btn1",
                   backgroundColor: Colors.black45,
                   mini: true,
                   onPressed: getLocation,

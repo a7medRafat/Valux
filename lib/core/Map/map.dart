@@ -79,21 +79,21 @@ class _MyMapState extends State<MyMap> {
                   markers: [
                     if (tappedPoint != null)
                       Marker(
-                        width: 80,
-                        height: 80,
+                        width: 80.w,
+                        height: 80.h,
                         alignment: Alignment.center,
                         point: tappedPoint!,
-                        child: const Icon(Icons.location_pin,
-                            color: Colors.redAccent, size: 50),
+                        child: Icon(Icons.location_pin,
+                            color: Colors.blue, size: 50.sp),
                       ),
                     if (AddressCubit.currentLocation != null)
                       Marker(
-                        width: 80,
-                        height: 80,
+                        width: 80.w,
+                        height: 80.h,
                         alignment: Alignment.center,
                         point: AddressCubit.currentLocation!,
-                        child: const Icon(Icons.location_pin,
-                            color: Colors.red, size: 50),
+                        child: Icon(Icons.location_pin,
+                            color: Colors.red, size: 50.sp),
                       ),
                   ],
                 ),

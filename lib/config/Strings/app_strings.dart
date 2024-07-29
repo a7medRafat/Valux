@@ -15,4 +15,9 @@ class AppStrings {
   static String appName = 'Valux';
   static String dontHaveAcc = 'Don\'t have an account?';
   static String categories = 'Categories';
+
+  // location permission //
+  static String locationDisabled = 'Location services are disabled. Please enable the services';
+  static String locationDenied = 'Location permissions are denied';
+  static String locationPermanentlyDenied = 'Location permissions are permanently denied. Please enable them in settings.';
 }
