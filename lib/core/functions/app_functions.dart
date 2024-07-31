@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:valux/config/Strings/app_strings.dart';
+import 'package:valux/core/functions/open_app_settings.dart';
 import 'package:valux/core/shared_widgets/toast.dart';
 import '../../App/injuctoin_container.dart';
 import '../../features/auth/presentation/screen/login_screen.dart';
@@ -33,8 +34,9 @@ class AppFunctions {
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      MyToast.show(
-          text: AppStrings.locationPermanentlyDenied, context: context);
+      navigateToSettings(context);
+      // MyToast.show(
+      //     text: AppStrings.locationPermanentlyDenied, context: context);
 
       return false;
     }

@@ -14,7 +14,6 @@ import 'package:valux/features/address/data/models/AddressModel.dart';
 import 'package:valux/features/address/data/models/Address_body.dart';
 import '../data/models/GetAddresses.dart';
 import '../domain/usecases/get_addresses_usecase.dart';
-
 part 'address_state.dart';
 
 class AddressCubit extends Cubit<AddressState> {

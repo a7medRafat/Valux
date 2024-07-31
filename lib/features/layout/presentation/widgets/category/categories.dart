@@ -20,10 +20,10 @@ class Categories extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppStrings.categories, style:AppFonts.bodyText1),
+              Text(AppStrings.categories, style: AppFonts.bodyText1),
               SizedBox(height: 10.h),
               SizedBox(
-                height: 40.h,
+                height: 35.h,
                 child: ListView.separated(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
@@ -40,8 +40,7 @@ class Categories extends StatelessWidget {
                               .data![index]
                               .id!,
                         ),
-                    separatorBuilder: (context, index) =>
-                        SizedBox(width: 10.w),
+                    separatorBuilder: (context, index) => SizedBox(width: 10.w),
                     itemCount: sl<CategoryCubit>()
                         .categoriesModel!
                         .data!

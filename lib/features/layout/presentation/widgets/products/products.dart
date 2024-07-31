@@ -34,7 +34,7 @@ class ProductItem extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
               mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
+              crossAxisSpacing: 10,
               childAspectRatio: 1 / 1.3,
               children: List.generate(
                 sl<CategoryCubit>().selectedCategory == -1
